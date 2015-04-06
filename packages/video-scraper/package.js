@@ -35,6 +35,7 @@ Package.onUse(function(api) {
   ], 'client');
 
   api.addFiles([
+      'server/scraper.js'
   ], ['server']);
 
   api.addFiles([
@@ -44,4 +45,8 @@ Package.onUse(function(api) {
   api.export([
     'Feeds'
   ]);
+});
+
+Npm.depends({
+  'cheerio': '0.19.0'
 });

@@ -52,9 +52,8 @@ var fillData = function (instance) {
 
 Meteor.startup(function() {
   Template[getTemplate('post_submit')].onRendered(function(){
-    alert('dfasdfasf');
     var instance = this;
-    var $urlField = $('[name="url"]');
+    var $urlField = instance.$('[name="url"]');
 
     $urlField.change(function (e) {
       e.preventDefault();
