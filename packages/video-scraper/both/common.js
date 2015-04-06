@@ -34,3 +34,5 @@ postClassCallbacks.push(function (post, postClass){
   var thumbnailClass = !!post.thumbnailUrl ? "has-thumbnail" : "no-thumbnail";
   return postClass + " " + thumbnailClass;
 });
+
+templates.post_body = 'video_post_body';
