@@ -42,9 +42,7 @@ Package.onUse(function(api) {
     "i18n/en.i18n.json"
   ], both);
 
-  api.export([
-    'Feeds'
-  ]);
+  api.export([]);
 });
 
 Npm.depends({
