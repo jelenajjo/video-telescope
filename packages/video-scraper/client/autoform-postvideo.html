@@ -1,0 +1,10 @@
+<template name="afPostVideo">
+  <div class="post-video-container" style="{{style}}">
+    <video src="{{this.value}}" class="post-video-preview">
+      Sorry, your browser doesn't support embedded videos,
+      but don't worry, you can <a href="{{this.value}}">download it</a>
+      and watch it with your favorite video player!
+    </video>
+  </div>
+  <input class="post-video-input" type="text" value="{{this.value}}" {{this.atts}}/>
+</template>

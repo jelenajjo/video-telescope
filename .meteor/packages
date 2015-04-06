@@ -78,7 +78,7 @@ telescope-search
 telescope-tags
 telescope-theme-hubble
 telescope-email
-telescope-embedly
+# telescope-embedly
 telescope-newsletter
 telescope-daily
 telescope-update-prompt
@@ -95,3 +95,4 @@ telescope-sitemap
 telescope-messages
 
 # Custom Packages
+video-scraper
