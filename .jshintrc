@@ -132,6 +132,7 @@
 
       "getTemplate": false,
       "Messages": false,
-      "templates": false
+      "templates": false,
+      "Scraper": false
     }
 }

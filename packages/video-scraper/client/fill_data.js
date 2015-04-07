@@ -19,18 +19,22 @@ var fillData = function (instance) {
     Messages.clearSeen();
     console.log('getting data for '+url);
 
-    Meteor.call('scarperGetData', url, function (error, data) {
+    Meteor.call('scraperGetData', url, function (error, data) {
       if (error) {
         console.log(error);
         Messages.flash(error.message, 'error');
       } else if (data) {
-        // set thumbnail and fill in thumbnailUrl field
-        $img.attr('src', data.thumbnailUrl);
-        $thumbnailUrlField.val(data.thumbnailUrl);
+        if (data.thumbnailUrl) {
+          // set thumbnail and fill in thumbnailUrl field
+          $img.attr('src', data.thumbnailUrl);
+          $thumbnailUrlField.val(data.thumbnailUrl);
+        }
 
-        // set video and fill in videoUrl field
-        $video.attr('src', data.videoUrl);
-        $videoUrlField.val(data.videoUrl);
+        if (data.videoUrl) {
+          // set video and fill in videoUrl field
+          $video.attr('src', data.videoUrl);
+          $videoUrlField.val(data.videoUrl);
+        }
 
         // remove loading class
         $thumbnailContainer.removeClass('loading');

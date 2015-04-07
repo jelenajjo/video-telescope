@@ -35,7 +35,8 @@ Package.onUse(function(api) {
   ], 'client');
 
   api.addFiles([
-      'server/scraper.js'
+      'server/scraper.js',
+      'server/scrapers/xvideos.js',
   ], ['server']);
 
   api.addFiles([

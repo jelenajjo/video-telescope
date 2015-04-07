@@ -1,9 +1,9 @@
+/* global Scraper: true */
+
 var cheerio = Npm.require('cheerio');
 
-Meteor.methods({
-  scarperGetData: function(url) {
-    check(url, String);
-
+Scraper = {
+  general: function(url) {
     var data = {};
 
     try {
@@ -18,5 +18,25 @@ Meteor.methods({
       //throw new Meteor.Error(errorObject.error_code, errorObject.error_message);
     }
     return data;
+  }
+};
+
+var getData = function(url) {
+  var data;
+
+  if (/^http:\/\/www\.xvideos\.com/.test(url)) {
+    data = Scraper.xvideos(url);
+  } else {
+    data = Scraper.general(url);
+  }
+
+  return data;
+};
+
+Meteor.methods({
+  scraperGetData: function(url) {
+    check(url, String);
+
+    return getData(url);
   }
 });
