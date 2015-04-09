@@ -133,6 +133,10 @@
       "getTemplate": false,
       "Messages": false,
       "templates": false,
-      "Scraper": false
+      "postAfterSubmitMethodCallbacks": false,
+      "clog": false,
+
+      "Scraper": false,
+      "fs": false
     }
 }

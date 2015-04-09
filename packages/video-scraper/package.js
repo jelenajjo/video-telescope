@@ -14,6 +14,7 @@ Package.onUse(function(api) {
   ], 'client');
 
   api.use([
+    'peerlibrary:fs'
   ], 'server');
 
   api.addFiles([
@@ -47,5 +48,7 @@ Package.onUse(function(api) {
 });
 
 Npm.depends({
-  'cheerio': '0.19.0'
+  'cheerio': '0.19.0',
+  'request': '2.55.0',
+  'knox': '0.9.2'
 });

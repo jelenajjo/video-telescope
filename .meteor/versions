@@ -93,6 +93,9 @@ oauth1@1.1.4
 oauth2@1.1.3
 observe-sequence@1.0.5
 ordered-dict@1.0.3
+peerlibrary:assert@0.2.5
+peerlibrary:blocking@0.5.2
+peerlibrary:fs@0.1.7
 percolatestudio:synced-cron@1.1.0
 rajit:bootstrap3-datepicker@1.4.1
 random@1.0.3

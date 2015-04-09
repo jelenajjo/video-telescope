@@ -12,7 +12,7 @@ getEmbedlyData = function (url) {
   }
 
   try {
-    
+
     var result = Meteor.http.get(extractBase, {
       params: {
         key: embedlyKey,

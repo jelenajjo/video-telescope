@@ -42,7 +42,7 @@ XVideo.prototype._getVideoAndThumbnailUrl = function() {
 	split = split.split(',');
 
   return {
-    videoUrl: this._normalizeUrl(split[2]),
+    videoUrl: this._normalizeUrl(split[2]) || this._normalizeUrl(split[1]),
     thumbnailUrl: this._normalizeUrl(split[3])
   };
 };
