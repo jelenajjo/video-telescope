@@ -48,6 +48,18 @@ var videoLocationProperty = {
 };
 addToPostSchema.push(videoLocationProperty);
 
+var videoPlayLocationProperty = {
+  propertyName: 'videoPlayLocation',
+  allowed: ['s3', 'remote'],
+  propertySchema: {
+    type: String,
+    autoform: {
+      options: {s3: 's3', remote: 'remote'}
+    }
+  }
+};
+addToPostSchema.push(videoPlayLocationProperty);
+
 postThumbnail.push({
   template: 'postThumbnail',
   order: 15

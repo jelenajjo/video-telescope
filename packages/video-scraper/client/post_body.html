@@ -1,18 +1,14 @@
 <template name="video_post_body">
   <div class="post-body markdown">
-    {{#if isReady}}
-      {{{htmlBody}}}
+    {{{htmlBody}}}
 
-      {{#if videoUrl}}
-        <video src="{{videoUrl}}" poster="{{thumbnailUrl}}" controls="">
-          Sorry, your browser doesn't support embedded videos,
-          but don't worry, you can <a href="{{videoUrl}}">download it</a>
-          and watch it with your favorite video player!
-        </video>
-        <p>Video location: {{videoLocation}}</p>
-      {{/if}}
-    {{else}}
-      {{> spinner}}
+    {{#if videoUrl}}
+      <video src="{{videoUrl}}" poster="{{thumbnailUrl}}" controls="">
+        Sorry, your browser doesn't support embedded videos,
+        but don't worry, you can <a href="{{videoUrl}}">download it</a>
+        and watch it with your favorite video player!
+      </video>
+      <p>Video location: {{videoLocation}}</p>
     {{/if}}
   </div>
 </template>

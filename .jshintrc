@@ -138,9 +138,14 @@
       "addToPostSchema": false,
       "postThumbnail": false,
       "postClassCallbacks": false,
-      "postSubmitMethodCallbacks":false,
+      "postSubmitMethodCallbacks": false,
+      "postEditMethodCallbacks": false,
+      "postAfterEditMethodCallbacks": false,
+      "Posts": false,
+      "SyncedCron": false,
 
       "Scraper": false,
-      "fs": false
+      "fs": false,
+      "scrapeData": false
     }
 }

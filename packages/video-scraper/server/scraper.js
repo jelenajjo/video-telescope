@@ -4,8 +4,8 @@ var cheerio = Npm.require('cheerio');
 var request = Npm.require('request');
 var knox = Npm.require('knox');
 
-// Download video after post sumbimmeted
-var downloadVideoAfterSubmit = function (post) {
+// Download video after post sumbimmeted or edited
+var downloadVideo = function (post) {
   /*post = {
     _id: Random.id(),
     //videoUrl: 'http://videos1.cdn.xvideos.com/videos/3gp/7/9/e/xvideos.com_79e200b9438163c79eb60735ff8bc103.mp4?e=1428575944&ri=1024&rs=85&h=0678a0432903d435974aa71ff85df039'
@@ -14,7 +14,8 @@ var downloadVideoAfterSubmit = function (post) {
 
   var s3 = knox.createClient(Meteor.settings.S3);
 
-  if (!post.videoUrl) {
+  if (!post.videoUrl || post.videoPlayLocation !== 's3' ||
+      post.videoLocation === 's3') {
     return post;
   }
 
@@ -62,7 +63,12 @@ var downloadVideoAfterSubmit = function (post) {
 
   return post;
 };
-postAfterSubmitMethodCallbacks.push(downloadVideoAfterSubmit);
+postAfterSubmitMethodCallbacks.push(downloadVideo);
+
+postAfterEditMethodCallbacks.push(function(modifier, postId) {
+  var post =  Posts.findOne(postId);
+  downloadVideo(post);
+});
 
 var beforeSubmit = function(post) {
   if (/^http:\/\/www\.xvideos\.com/.test(post.originUrl)) {
@@ -92,7 +98,7 @@ Scraper = {
   }
 };
 
-var getData = function(url) {
+scrapeData = function(url) {
   var data;
 
   if (/^http:\/\/www\.xvideos\.com/.test(url)) {
@@ -108,9 +114,9 @@ Meteor.methods({
   scraperGetData: function(url) {
     check(url, String);
 
-    return getData(url);
+    return scrapeData(url);
   },
   testDownload: function() {
-    downloadVideoAfterSubmit();
+    downloadVideo();
   }
 });

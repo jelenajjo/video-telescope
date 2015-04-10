@@ -14,7 +14,7 @@ Package.onUse(function(api) {
   ], 'client');
 
   api.use([
-    'peerlibrary:fs'
+    'percolatestudio:synced-cron'
   ], 'server');
 
   api.addFiles([
@@ -31,7 +31,6 @@ Package.onUse(function(api) {
     'client/post_thumbnail.html',
     'client/post_thumbnail.js',
     'client/post_body.html',
-    'client/post_body.js',
 
     'client/fill_data.js'
   ], 'client');
@@ -39,6 +38,7 @@ Package.onUse(function(api) {
   api.addFiles([
       'server/scraper.js',
       'server/scrapers/xvideos.js',
+      'server/cron.js',
   ], ['server']);
 
   api.addFiles([

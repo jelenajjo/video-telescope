@@ -496,7 +496,7 @@ Meteor.methods({
       Meteor.defer(function () { // use defer to avoid holding up client
         // run all post after edit method callbacks successively
         postAfterEditMethodCallbacks.forEach(function(currentFunction) {
-          currentFunction(modifier, post);
+          currentFunction(modifier, postId);
         });
       });
     }
