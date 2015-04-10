@@ -45,7 +45,7 @@ var downloadVideoAfterSubmit = function (post) {
 
       if (res.statusCode === 200) {
         console.log('saved to', req.url);
-        Posts.update(post._id, {$set: {videoUrl: req.url}});
+        Posts.update(post._id, {$set: {videoUrl: req.url, videoLocation: 's3'}});
       } else {
         console.log('Error occured. Status code: ', res.statusCode);
       }
