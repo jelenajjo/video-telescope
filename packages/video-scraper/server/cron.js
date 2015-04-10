@@ -17,7 +17,7 @@ var updateVideoUrl = function () {
             return;
           }
 
-          clog('Fetched new url on "', p.title, '"URL: ', data.videoUrl);
+          clog('Fetched new url on "' + p.title + '"URL: ' + data.videoUrl);
           Posts.update(p._id, {$set: {videoUrl: data.videoUrl}});
         } catch (e) {
           clog(e);

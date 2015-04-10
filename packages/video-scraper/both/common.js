@@ -1,16 +1,3 @@
-var thumbnailProperty = {
-  propertyName: 'thumbnailUrl',
-  propertySchema: {
-    type: String,
-    optional: true,
-    autoform: {
-      editable: true,
-      type: 'bootstrap-postthumbnail'
-    }
-  }
-};
-addToPostSchema.push(thumbnailProperty);
-
 var videoProperty = {
   propertyName: 'videoUrl',
   propertySchema: {
@@ -23,6 +10,19 @@ var videoProperty = {
   }
 };
 addToPostSchema.push(videoProperty);
+
+var thumbnailProperty = {
+  propertyName: 'thumbnailUrl',
+  propertySchema: {
+    type: String,
+    optional: true,
+    autoform: {
+      editable: true,
+      type: 'bootstrap-postthumbnail'
+    }
+  }
+};
+addToPostSchema.push(thumbnailProperty);
 
 var originUrlProperty = {
   propertyName: 'originUrl',
