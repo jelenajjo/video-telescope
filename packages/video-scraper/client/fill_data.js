@@ -11,6 +11,7 @@ var fillData = function (instance) {
   var $video = instance.$('.post-video-preview');
   var $thumbnailUrlField = instance.$('[name="thumbnailUrl"]');
   var $videoUrlField = instance.$('[name="videoUrl"]');
+  var $originUrlField = instance.$('[name="originUrl"]');
 
   if (!!url) {
     $thumbnailContainer.addClass('loading');
@@ -34,6 +35,8 @@ var fillData = function (instance) {
           // set video and fill in videoUrl field
           $video.attr('src', data.videoUrl);
           $videoUrlField.val(data.videoUrl);
+
+          $originUrlField.val(url);
         }
 
         // remove loading class

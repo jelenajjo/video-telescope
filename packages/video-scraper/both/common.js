@@ -24,6 +24,30 @@ var videoProperty = {
 };
 addToPostSchema.push(videoProperty);
 
+var originUrlProperty = {
+  propertyName: 'originUrl',
+  propertySchema: {
+    type: String,
+    optional: true,
+    autoform: {
+      type: 'hidden'
+    }
+  }
+};
+addToPostSchema.push(originUrlProperty);
+
+var videoLocationProperty = {
+  propertyName: 'videoLocation',
+  propertySchema: {
+    type: String,
+    optional: true,
+    autoform: {
+      omit: true
+    }
+  }
+};
+addToPostSchema.push(videoLocationProperty);
+
 postThumbnail.push({
   template: 'postThumbnail',
   order: 15

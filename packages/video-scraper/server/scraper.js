@@ -64,6 +64,15 @@ var downloadVideoAfterSubmit = function (post) {
 };
 postAfterSubmitMethodCallbacks.push(downloadVideoAfterSubmit);
 
+var beforeSubmit = function(post) {
+  if (/^http:\/\/www\.xvideos\.com/.test(post.originUrl)) {
+    post.videoLocation = 'xvideo';
+  }
+
+  return post;
+};
+postSubmitMethodCallbacks.push(beforeSubmit);
+
 Scraper = {
   general: function(url) {
     var data = {};

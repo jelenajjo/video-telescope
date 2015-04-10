@@ -135,6 +135,10 @@
       "templates": false,
       "postAfterSubmitMethodCallbacks": false,
       "clog": false,
+      "addToPostSchema": false,
+      "postThumbnail": false,
+      "postClassCallbacks": false,
+      "postSubmitMethodCallbacks":false,
 
       "Scraper": false,
       "fs": false

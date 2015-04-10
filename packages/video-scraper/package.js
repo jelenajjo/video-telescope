@@ -31,6 +31,7 @@ Package.onUse(function(api) {
     'client/post_thumbnail.html',
     'client/post_thumbnail.js',
     'client/post_body.html',
+    'client/post_body.js',
 
     'client/fill_data.js'
   ], 'client');
