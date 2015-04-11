@@ -65,6 +65,7 @@ var videoPlayLocationProperty = {
   allowed: ['s3', 'remote'],
   propertySchema: {
     type: String,
+    optional: true,
     autoform: {
       options: {s3: 's3', remote: 'remote'}
     }

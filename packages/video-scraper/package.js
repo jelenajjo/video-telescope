@@ -16,6 +16,7 @@ Package.onUse(function(api) {
 
   api.use([
     'momentjs:moment',
+    'matb33:collection-hooks',
   ], 'server');
 
   api.addFiles([
@@ -38,6 +39,7 @@ Package.onUse(function(api) {
   ], 'client');
 
   api.addFiles([
+      'server/hooks.js',
       'server/scraper.js',
       'server/scrapers/xvideos.js',
       'server/directives.js',

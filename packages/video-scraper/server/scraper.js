@@ -71,8 +71,7 @@ var downloadVideo = function (post) {
 };
 postAfterSubmitMethodCallbacks.push(downloadVideo);
 
-postAfterEditMethodCallbacks.push(function(modifier, postId) {
-  var post =  Posts.findOne(postId);
+postAfterEditMethodCallbacks.push(function(modifier, post) {
   downloadVideo(post);
 });
 
