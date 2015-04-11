@@ -497,7 +497,7 @@ var migrationsList = {
   },
   changeColorNames: function () {
     var i = 0;
-    var settings = Settings.findOne();
+    var settings = Settings.collection.findOne();
     var set = {};
 
     if (!!settings) {
@@ -513,9 +513,9 @@ var migrationsList = {
 
       if (!!settings.buttonColor)
         set.secondaryContrastColor = settings.headerTextColor;
-      
+
       if (!_.isEmpty(set)) {
-        Settings.update(settings._id, {$set: set}, {validate: false});
+        Settings.collection.update(settings._id, {$set: set}, {validate: false});
       }
 
     }
