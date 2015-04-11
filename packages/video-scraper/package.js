@@ -5,7 +5,8 @@ Package.onUse(function(api) {
   api.use([
     'telescope-base',
     'tap:i18n',
-    'aldeed:autoform'
+    'aldeed:autoform',
+    'edgee:slingshot@0.6.1'
   ], both);
 
   api.use([
@@ -14,11 +15,11 @@ Package.onUse(function(api) {
   ], 'client');
 
   api.use([
-    'percolatestudio:synced-cron'
+    'momentjs:moment',
   ], 'server');
 
   api.addFiles([
-    'both/common.js'
+    'both/common.js',
   ], both);
 
   api.addFiles([
@@ -31,6 +32,7 @@ Package.onUse(function(api) {
     'client/post_thumbnail.html',
     'client/post_thumbnail.js',
     'client/post_body.html',
+    'client/post_body.js',
 
     'client/fill_data.js'
   ], 'client');
@@ -38,7 +40,7 @@ Package.onUse(function(api) {
   api.addFiles([
       'server/scraper.js',
       'server/scrapers/xvideos.js',
-      'server/cron.js',
+      'server/directives.js',
   ], ['server']);
 
   api.addFiles([

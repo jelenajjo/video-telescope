@@ -12,7 +12,13 @@ var downloadVideo = function (post) {
     videoUrl: 'http://content.xvideos.com/videos/mp4/9/7/b/xvideos.com_97bcd7e8a94a610385bdb2641474dbc7.mp4?e=1428576794&ri=1024&rs=85&h=332e376c5fed4e41a325810ecc0dd92e'
   };*/
 
-  var s3 = knox.createClient(Meteor.settings.S3);
+  var credential = {
+    'key': Meteor.settings.AWSAccessKeyId,
+    'secret': Meteor.settings.AWSSecretAccessKey,
+    'bucket': Meteor.settings.S3bucket
+  };
+
+  var s3 = knox.createClient(credential);
 
   if (!post.videoUrl || post.videoPlayLocation !== 's3' ||
       post.videoLocation === 's3') {
@@ -46,7 +52,7 @@ var downloadVideo = function (post) {
 
       if (res.statusCode === 200) {
         console.log('saved to', req.url);
-        Posts.update(post._id, {$set: {videoUrl: req.url, videoLocation: 's3'}});
+        Posts.update(post._id, {$set: {videoUrl: req.url, videoLocation: 's3', videoUrlUpdatedAt: new Date()}});
       } else {
         console.log('Error occured. Status code: ', res.statusCode);
       }
@@ -74,6 +80,7 @@ var beforeSubmit = function(post) {
   if (/^http:\/\/www\.xvideos\.com/.test(post.originUrl)) {
     post.videoLocation = 'xvideo';
   }
+  post.videoUrlUpdatedAt = new Date();
 
   return post;
 };
@@ -114,7 +121,35 @@ Meteor.methods({
   scraperGetData: function(url) {
     check(url, String);
 
-    return scrapeData(url);
+    try {
+      return scrapeData(url);
+    } catch (e) {
+      return;
+    }
+  },
+  updateVideoUrl: function(id) {
+    check(id, String);
+
+    var post = Posts.findOne(id);
+
+    if (!post) {
+      return;
+    }
+
+    if (!post.originUrl || !post.videoLocation || post.videoLocation === 's3') {
+      return;
+    }
+    if (post.videoLocation === 'xvideo') {
+      var diff = Math.abs(new Date() - post.videoUrlUpdatedAt);
+      if (diff / 60000 < 40) {
+        return;
+      }
+
+      var data = scrapeData(post.originUrl);
+      if (data.videoUrl) {
+        Posts.update(id, {$set: {videoUrl: data.videoUrl, videoUrlUpdatedAt: new Date()}});
+      }
+    }
   },
   testDownload: function() {
     downloadVideo();

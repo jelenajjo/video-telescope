@@ -7,6 +7,7 @@ Template.afPostVideo.onRendered(function() {
 
   // Get handles on the video and canvas elements
   self.video = document.querySelector('video.post-video-preview');
+  //self.video.setAttribute('crossorigin', 'anonymous');
   self.canvas = document.querySelector('canvas.snapshot');
 
   // Define some vars required later
@@ -17,7 +18,7 @@ Template.afPostVideo.onRendered(function() {
     // Calculate the ratio of the video's width to height
     ratio = self.video.videoWidth / self.video.videoHeight;
     // Define the required width as 100 pixels smaller than the actual video's width
-    self.w = self.video.videoWidth - 100;
+    self.w = self.video.videoWidth;// - 100;
     // Calculate the height based on the video's width and the ratio
     self.h = parseInt(self.w / ratio, 10);
     // Set the canvas width and height to the values just calculated

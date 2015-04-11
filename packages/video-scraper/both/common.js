@@ -48,6 +48,18 @@ var videoLocationProperty = {
 };
 addToPostSchema.push(videoLocationProperty);
 
+var videoUrlUpdatedAtProperty = {
+  propertyName: 'videoUrlUpdatedAt',
+  propertySchema: {
+    type: Date,
+    optional: true,
+    autoform: {
+      omit: true
+    }
+  }
+};
+addToPostSchema.push(videoUrlUpdatedAtProperty);
+
 var videoPlayLocationProperty = {
   propertyName: 'videoPlayLocation',
   allowed: ['s3', 'remote'],

@@ -22,5 +22,27 @@ Template.afPostThumbnail.events({
 
     var link = $(e.currentTarget).val();
     $('img.post-thumbnail-preview').attr('src', link);
+  },
+  'click .upload-image': function(e) {
+    e.preventDefault();
+
+    var uploader = new Slingshot.Upload('uploadThumbnail');
+    var imageFiles = document.getElementById('post-thumbnail-file-input').files;
+    if (!imageFiles || imageFiles.length === 0) {
+      return alert('Please select image');
+    }
+
+    var $thumbnailContainer = $('.post-thumbnail-container');
+    $thumbnailContainer.addClass('loading');
+
+    uploader.send(imageFiles[0], function(err, url) {
+      $thumbnailContainer.removeClass('loading');
+      if (err) {
+        console.log(err);
+        return alert(err);
+      }
+      $('.post-thumbnail-input').val(url);
+      $('.post-thumbnail-preview').attr('src', url);
+    });
   }
 });
