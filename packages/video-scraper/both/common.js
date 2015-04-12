@@ -30,6 +30,7 @@ var originUrlProperty = {
     type: String,
     optional: true,
     autoform: {
+      editable: true,
       type: 'hidden'
     }
   }
