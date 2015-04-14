@@ -6,10 +6,13 @@ var knox = Npm.require('knox');
 
 // Download video after post sumbimmeted or edited
 var downloadVideo = function (post) {
-  /*post = {
+  /*
+  post = {
     _id: Random.id(),
+    videoPlayLocation: 's3',
     //videoUrl: 'http://videos1.cdn.xvideos.com/videos/3gp/7/9/e/xvideos.com_79e200b9438163c79eb60735ff8bc103.mp4?e=1428575944&ri=1024&rs=85&h=0678a0432903d435974aa71ff85df039'
     videoUrl: 'http://content.xvideos.com/videos/mp4/9/7/b/xvideos.com_97bcd7e8a94a610385bdb2641474dbc7.mp4?e=1428576794&ri=1024&rs=85&h=332e376c5fed4e41a325810ecc0dd92e'
+    //videoUrl: 'http://vt.tumblr.com/tumblr_mg0kaiY3sn1rtdgjp.mp4'
   };*/
 
   var credential = {
@@ -38,7 +41,12 @@ var downloadVideo = function (post) {
     };
 
     var req = s3.put('videos/'+post._id, headers);
-    request(post.videoUrl).pipe(req);
+    request(post.videoUrl).on('response', function(res) {
+      if (res.headers.date) {
+        delete res.headers.date;
+      }
+      res.pipe(req);
+    });
 
     req.on('response', Meteor.bindEnvironment(function(res) {
       res.body = '';
@@ -47,11 +55,13 @@ var downloadVideo = function (post) {
       });
 
       res.on('end', function () {
-        console.log(res.body);
+        if (res.statusCode !== 200) {
+          console.log(res.body);
+        }
       });
 
       if (res.statusCode === 200) {
-        console.log('saved to', req.url);
+        //console.log('saved to', req.url);
         Posts.update(post._id, {$set: {videoUrl: req.url, videoLocation: 's3', videoUrlUpdatedAt: new Date()}});
       } else {
         console.log('Error occured. Status code: ', res.statusCode);
