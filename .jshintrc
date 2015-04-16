@@ -142,11 +142,13 @@
       "postEditMethodCallbacks": false,
       "postAfterEditMethodCallbacks": false,
       "Posts": false,
+      "Settings": false,
       "SyncedCron": false,
       "Slingshot": false,
 
       "Scraper": false,
       "fs": false,
-      "scrapeData": false
+      "scrapeData": false,
+      "Cropper": false
     }
 }

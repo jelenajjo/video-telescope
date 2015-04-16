@@ -1,5 +1,7 @@
 /* global Scraper: true */
 
+var parseUrl = /^(?:([A-Za-z]+):)?(\/{0,3})([0-9.\-A-Za-z]+)(?::(\d+))?(?:\/([^?#]*))?(?:\?([^#]*))?(?:#(.*))?$/;
+
 var cheerio = Npm.require('cheerio');
 var request = Npm.require('request');
 var knox = Npm.require('knox');
@@ -82,7 +84,26 @@ var downloadVideo = function (post) {
 postAfterSubmitMethodCallbacks.push(downloadVideo);
 
 postAfterEditMethodCallbacks.push(function(modifier, post) {
-  downloadVideo(post);
+  var newVideoUrl = modifier.$set && modifier.$set.videoUrl;
+
+  if (newVideoUrl !== post.videoUrl) {
+    var credential = {
+      'key': Meteor.settings.AWSAccessKeyId,
+      'secret': Meteor.settings.AWSSecretAccessKey,
+      'bucket': Meteor.settings.S3bucket
+    };
+
+    var s3 = knox.createClient(credential);
+    var path;
+
+    if (post.videoLocation === 's3' && post.videoUrl) {
+      path = parseUrl.exec(post.videoUrl)[5];
+      s3.del(path).end();
+    }
+
+    post.videoUrl = newVideoUrl;
+    downloadVideo(post);
+  }
 });
 
 var beforeSubmit = function(post) {
