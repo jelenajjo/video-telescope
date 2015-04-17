@@ -148,6 +148,7 @@ Meteor.methods({
     if (!post.originUrl || !post.videoLocation || post.videoLocation === 's3') {
       return;
     }
+
     if (post.videoLocation === 'xvideo') {
       var diff = Math.abs(new Date() - post.videoUrlUpdatedAt);
       if (diff / 60000 < 40) {
