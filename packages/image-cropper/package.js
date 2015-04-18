@@ -27,7 +27,6 @@ Package.onUse(function(api) {
 
   api.addFiles([
     'server/hooks.js',
-    'server/methods.js',
   ], ['server']);
 
   api.addFiles([
