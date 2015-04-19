@@ -1,0 +1,11 @@
+<template name="newPost-page">
+  <div class="single-post grid">
+    {{#if body}}
+     <div class="row videoEmbed">
+      {{> UI.dynamic template=post_body}}
+     </div>
+      {{> postBottom}}
+    {{/if}}
+
+  </div>
+</template>
