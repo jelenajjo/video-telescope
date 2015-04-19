@@ -4,13 +4,15 @@ Package.describe({
   name: '1-telescope-scraper'
 });
 
-Package.onUse(function (api) {  
+Package.onUse(function (api) {
   api.use('telescope-base');
   api.use('templating');
-    
+  api.use('tap:i18n');
+  api.use('twbs:bootstrap@3.3.4', 'client');
+  api.use('natestrauser:font-awesome@4.3.0', 'client');
+
   api.addFiles('newTemplates.js', 'client');
   api.addFiles('style.css', 'client');
-  api.addFiles('head.html' , 'client');
   api.addFiles('new-nav.html' , 'client');
   api.addFiles('post-bottom.html' , 'client');
   api.addFiles('new-post-page.html' , 'client');
@@ -26,6 +28,7 @@ Package.onUse(function (api) {
   api.addFiles('new-submit-button.html' , 'client');
   api.addFiles('new-user-menu.html' , 'client');
   api.addFiles('new-user-menu.js' , 'client');
-      api.addFiles('new-post-title.html' , 'client');
+  api.addFiles('new-post-title.html' , 'client');
 
+  api.addFiles('package-tap.i18n' , ['server', 'client']);
 });
