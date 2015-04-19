@@ -1,0 +1,17 @@
+<div class="post-body markdown">
+  {{#if videoUrl}}
+    <div itemprop="video" itemscope itemtype="http://schema.org/VideoObject">
+      <h2><span itemprop="name">{{title}}</span></h2>
+      {{!<meta itemprop="duration" content="T1M33S" />}}
+      <meta itemprop="thumbnailUrl" content="{{thumbnailUrl}}" />
+      <meta itemprop="contentURL" content="{{videoUrl}}" />
+      {{!<meta itemprop="uploadDate" content="2011-07-05T08:00:00+08:00" />}}
+      <meta itemprop="uploadDate" content="{{createdAt}}" />
+      <video src="{{videoUrl}}" poster="{{thumbnailUrl}}" controls="">
+      </video>
+      <span itemprop="description">{{{htmlBody}}}</span>
+    </div>
+  {{else}}
+    {{{htmlBody}}}
+  {{/if}}
+</div>
