@@ -29,7 +29,7 @@ AutoForm.hooks({
     onSuccess: function(operation, post) {
       this.template.$('button[type=submit]').removeClass('loading');
       trackEvent("new post", {'postId': post._id});
-      Router.go('post_page', {_id: post._id});
+      Router.go('post_page_by_slug', {slug: post.slug});
       if (post.status === STATUS_PENDING) {
         Messages.flash(i18n.t('thanks_your_post_is_awaiting_approval'), 'success');
       }
