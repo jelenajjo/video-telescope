@@ -3,6 +3,7 @@ Package.describe({summary: 'Slug'});
 Package.onUse(function(api) {
   var both = ['client', 'server'];
   api.use([
+    'telescope-base',
     'iron:router',
   ], both);
 
@@ -13,6 +14,7 @@ Package.onUse(function(api) {
   ], 'server');
 
   api.addFiles([
+    'slug.js',
     'router.js',
   ], both);
 
@@ -20,5 +22,7 @@ Package.onUse(function(api) {
   ], 'client');
 
   api.addFiles([
+    'server/publications.js',
+    'server/hooks.js',
   ], ['server']);
 });
