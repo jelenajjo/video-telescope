@@ -10,7 +10,7 @@ backbone
 accounts-base
 accounts-password
 accounts-twitter
-spiderable
+# spiderable
 email
 accounts-facebook
 service-configuration
@@ -54,7 +54,7 @@ aslagle:reactive-table
 aramk:tinycolor
 fortawesome:fontawesome
 fourseven:scss
-manuelschoebel:ms-seo
+# manuelschoebel:ms-seo
 
 # Testing
 
@@ -99,3 +99,4 @@ telescope-pages
 # Custom Packages
 video-scraper
 image-cropper
+seo
