@@ -23,8 +23,7 @@ Package.onUse(function (api) {
   api.addFiles('new-comment-item.html' , 'client');
   api.addFiles('new-post-upvote.html' , 'client');
   api.addFiles('new-post-upvote.js' , 'client');
-  api.addFiles('new-notifications-menu.html' , 'client');
-  api.addFiles('new-notifications-menu.js' , 'client');
+
   api.addFiles('new-submit-button.html' , 'client');
   api.addFiles('new-user-menu.html' , 'client');
   api.addFiles('new-user-menu.js' , 'client');
