@@ -3,7 +3,7 @@ Meteor.startup(function () {
   Router.onBeforeAction(Router._filters.isAdmin, {only: ['categories']});
 
   PostsCategoryController = PostsListController.extend({
-    
+
     view: 'category',
 
     showViewsNav: false,
@@ -22,14 +22,14 @@ Meteor.startup(function () {
     },
 
     getDescription: function () {
-      return this.getCurrentCategory().description;    
+      return this.getCurrentCategory().description;
     }
 
   });
 
   // Categories
 
-  Router.route('/category/:slug/:limit?', {
+  Router.route('/c/:slug/:limit?', {
     name: 'posts_category',
     controller: PostsCategoryController,
     onAfterAction: function() {
