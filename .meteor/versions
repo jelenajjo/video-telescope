@@ -39,8 +39,6 @@ facebook@1.2.0
 fastclick@1.0.3
 fortawesome:fontawesome@4.3.0
 fourseven:scss@2.1.1
-gadicohen:robots-txt@0.0.9
-gadicohen:sitemaps@0.0.20
 geojson-utils@1.0.3
 handlebars@1.0.3
 html-tools@1.0.4
@@ -140,7 +138,6 @@ telescope-rss@0.0.0
 telescope-search@0.0.0
 telescope-settings@0.0.0
 telescope-singleday@0.1.0
-telescope-sitemap@0.0.5
 telescope-subscribe-to-posts@0.1.0
 telescope-tagline-banner@0.1.0
 telescope-tags@0.0.0

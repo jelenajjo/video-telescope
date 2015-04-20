@@ -2,10 +2,16 @@ Package.describe({summary: 'SEO'});
 
 Package.onUse(function(api) {
   api.use([
+    'webapp',
     'meteorhacks:ssr@2.1.1',
     'meteorhacks:picker@1.0.2',
     'momentjs:moment',
     'slug',
+    'templating',
+    'underscore',
+    'iron:router',
+    'telescope-lib',
+    'telescope-base',
   ], 'server');
 
   api.addFiles([
@@ -25,5 +31,6 @@ Package.onUse(function(api) {
   api.addFiles([
     'server/router.js',
     'server/templates.js',
+    'server/sitemap.js',
   ], ['server']);
 });
