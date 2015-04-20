@@ -10,7 +10,7 @@ backbone
 accounts-base
 accounts-password
 accounts-twitter
-spiderable
+# spiderable
 email
 accounts-facebook
 service-configuration
@@ -92,7 +92,7 @@ telescope-getting-started
 telescope-subscribe-to-posts
 telescope-tagline-banner
 telescope-settings
-telescope-sitemap
+# telescope-sitemap
 telescope-messages
 telescope-pages
 
@@ -100,3 +100,5 @@ telescope-pages
 video-scraper
 1-telescope-scraper
 image-cropper
+seo
+slug
