@@ -28,6 +28,6 @@ Package.onUse(function (api) {
   api.addFiles('new-user-menu.html' , 'client');
   api.addFiles('new-user-menu.js' , 'client');
   api.addFiles('new-post-title.html' , 'client');
-
+  api.addFiles('new-nav.js' , 'client');
   api.addFiles('package-tap.i18n' , ['server', 'client']);
 });
