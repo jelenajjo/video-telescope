@@ -55,7 +55,7 @@ getPostCategories = function (post) {
 }
 
 getCategoryUrl = function(slug){
-  return getSiteUrl()+'category/'+slug;
+  return getSiteUrl()+'c/'+slug;
 };
 
 // add callback that adds categories CSS classes
