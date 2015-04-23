@@ -13,8 +13,6 @@ Template[getTemplate('newUserMenu')].helpers({
       return 'list';
     } else if (Settings.get('navLayout', 'top-nav') === 'top-nav') {
       return 'dropdown';
-    } else {
-      return 'accordion';
-    }
+    } 
   }
 });

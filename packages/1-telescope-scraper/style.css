@@ -10,6 +10,10 @@ html, body{
     background:#232324;
 }
 
+.side-nav .inner-wrapper{
+    margin-left: 0;
+}
+
 /* HEADER */
 
 .avatar-circle .avatar-image{
