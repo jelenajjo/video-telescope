@@ -12,27 +12,27 @@ Meteor.publish('singlePostBySlug', function(slug) {
 Meteor.publish('postUsersBySlug', function(postSlug) {
   if (can.viewById(this.userId)){
     // publish post author and post commenters
-    var post = Posts.findOne({slug: postSlug}),
-        users = [post.userId]; // publish post author's ID
+    var post = Posts.findOne({slug: postSlug});
 
-    if (post) {
+    if (!post) {
+      return this.ready();
+    }
 
-      // get IDs from all commenters on the post
-      var comments = Comments.find({postId: post._id}).fetch();
-      if (comments.length) {
-        users = users.concat(_.pluck(comments, "userId"));
-      }
+    var users = [post.userId]; // publish post author's ID
+    // get IDs from all commenters on the post
+    var comments = Comments.find({postId: post._id}).fetch();
+    if (comments.length) {
+      users = users.concat(_.pluck(comments, "userId"));
+    }
 
-      // publish upvoters
-      if (post.upvoters && post.upvoters.length) {
-        users = users.concat(post.upvoters);
-      }
+    // publish upvoters
+    if (post.upvoters && post.upvoters.length) {
+      users = users.concat(post.upvoters);
+    }
 
-      // publish downvoters
-      if (post.downvoters && post.downvoters.length) {
-        users = users.concat(post.downvoters);
-      }
-
+    // publish downvoters
+    if (post.downvoters && post.downvoters.length) {
+      users = users.concat(post.downvoters);
     }
 
     // remove any duplicate IDs

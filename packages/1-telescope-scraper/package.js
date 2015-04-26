@@ -29,5 +29,6 @@ Package.onUse(function (api) {
   api.addFiles('new-user-menu.js' , 'client');
   api.addFiles('new-post-title.html' , 'client');
   api.addFiles('new-nav.js' , 'client');
+  api.addFiles('new-post-discuss.html' , 'client');
   api.addFiles('package-tap.i18n' , ['server', 'client']);
 });
