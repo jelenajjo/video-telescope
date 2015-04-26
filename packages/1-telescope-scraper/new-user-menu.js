@@ -1,4 +1,7 @@
-Template[getTemplate('userMenu')].helpers({
+Template[getTemplate('newUserMenu')].helpers({
+  currentUser: function () {
+    return Meteor.user();
+  },
   menuLabel: function () {
     return getDisplayName(Meteor.user());
   },
@@ -10,6 +13,6 @@ Template[getTemplate('userMenu')].helpers({
       return 'list';
     } else if (Settings.get('navLayout', 'top-nav') === 'top-nav') {
       return 'dropdown';
-    } 
+    }
   }
 });

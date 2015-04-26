@@ -1,0 +1,21 @@
+<template name="newPostUpvote">
+  {{#if upvoted}}
+    <span class="btn upvote-link voted action" disabled="disabled" title="{{_ "Liked"}}">
+    <i class="fa fa-thumbs-up"></i> 
+      <span class="sr-only"> LIKED</span>
+    </span>
+    <a class="btn downvote-link not-voted action" href="#" title="{{_ "Unlike"}}">
+    <i class="fa fa-thumbs-down"></i>
+    </a>
+  {{else}}
+    <a class="btn upvote-link not-voted action" href="#" title="{{_ "Like"}}">
+    <i class="fa fa-thumbs-up"></i>
+      <span class="sr-only"> LIKE</span>
+    </a>
+     <span class="btn downvote-link voted action" disabled="disabled" title="{{_ "Unliked"}}">
+    <i class="fa fa-thumbs-down"></i> 
+    </span>
+  {{/if}}
+  
+  
+</template>
