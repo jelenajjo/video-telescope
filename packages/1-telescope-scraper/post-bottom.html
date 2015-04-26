@@ -5,6 +5,7 @@
             <div class="userAuthor">
                 {{> postAvatars}}
                 {{> postAuthor}}
+                
             </div>
             <div role="tabpanel">
 
@@ -17,10 +18,19 @@
 
       <!-- Tab panes -->
       <div class="tab-content">
-        <div role="tabpanel" class="tab-pane active" id="home">DaneJones Pretty natural soft body brunette passionate for huge cock YP - XVIDEOS.COM, DaneJones Pretty natural soft body brunette passionate for huge cock YP - XVIDEOS.COM, DaneJones Pretty natural soft body brunette passionate for huge cock YP - XVIDEOS.COM
+        <div role="tabpanel" class="tab-pane active" id="home"><p>
+            {{{htmlBody}}}
+        </p>
         <div class="publishedTime">
             {{#if postedAt}}<span class="post-time">Published {{timeAgo postedAt}}</span>{{/if}}
-            
+            {{#if isAdmin}}
+ <p>Video location: {{videoLocation}}</p>
+{{/if}}
+       {{#if canEdit this}}
+       <div class="editPost">
+     <a href="{{pathFor route='post_edit' _id=_id}}" class="btn btn-warning edit-link goto-edit">{{_ "edit"}}</a>
+      </div>
+    {{/if}}     
            
         </div>
         </div>

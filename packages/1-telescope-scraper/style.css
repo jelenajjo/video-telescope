@@ -152,12 +152,55 @@ padding-top: 7px;
 a.sign-in{
     border-radius: 4px 0 0 4px;
     margin-right: 2px;
+    padding: 8px 10px!important;
 }
 
 a.sign-up{
     border-radius: 0 4px 4px 0;
+      padding: 8px 10px!important;
 }
 
+.menu-dropdown .menu-menu .menu-contents {
+    background:#333!important;
+    box-shadow: none!important;
+}
+
+.menu-dropdown .menu-menu, .menu-dropdown .menu-menu a, .menu-dropdown .menu-menu a:link, .menu-dropdown .menu-menu a:visited {
+    color: #fff!important;
+}
+
+.action-link{
+display: block;
+overflow: hidden;
+margin-bottom: 30px;
+margin-top: 5px;
+}
+
+.notification-html p{
+float: left;
+display: block;
+font-size: 0.8em;
+}
+
+.notification-timestamp{
+font-size: 0.8em;
+float: left;
+}
+
+.menu-contents{
+display: block;
+overflow: hidden;
+}
+
+.mark-as-read{
+margin: 0px auto 20px;
+bottom: 0px;
+position: absolute;
+}
+
+.menu-contents .dropdown-item{
+margin:0!important;
+}
 /* VIDEO EMBED */
 
 .post-body video{
@@ -234,6 +277,10 @@ color: #6A6A6A;
 
 .videoCommenting{
     margin-top:40px;
+}
+
+.has-shadow, .single-post .posts .post, .post-body, .page-body {
+    box-shadow: none;
 }
 
 .videoCommenting h2{
@@ -441,3 +488,68 @@ margin-top: 0px;
 .post-domain{
     display:none;
 }
+
+.post,.posts-grid .post:after {
+    border-bottom:0;
+}
+
+.post-title{
+    color:#A3A3A3;
+}
+
+.posts-grid .post{
+    background: #303031;
+}
+
+.posts-grid .post-avatars{
+right: 20px!important;
+bottom: 8px!important;
+}
+
+.post-upvote .upvote-link.voted{
+    float:left;
+}
+
+.post-upvote .upvote-link {
+     float:left;
+}
+
+.avatar-circle .avatar-initials{
+    border-radius: 4px !important;
+}
+
+.avatar-initials{
+line-height: 2!important;
+font-size: 1.2em!important;
+font-weight: bold!important;
+}
+
+.post, .post:first-child{
+border-radius: 0 0 4px 4px;
+}
+
+.btn:hover, .btn:focus, .btn.focus {
+    color: rgba(86, 86, 86, 1);
+}
+
+.post-meta a:hover {
+    color: rgba(219, 219, 219, 1);
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.editPost{
+    margin-top:20px;
+}
+
+.editPost a{
+color:#EFEFEF !important;
+    background-color: #5C5C5C;
+    border:none;
+}
+
+.editPost a:hover, .editPost a:focus, .editPost a:active{
+background-color: rgba(77, 77, 77, 1);
+}
+
+.post-meta .post-author{display: none;}

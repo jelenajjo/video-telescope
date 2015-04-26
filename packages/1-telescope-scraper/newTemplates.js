@@ -7,5 +7,6 @@ templates["postUpvote"] = "newPostUpvote";
 templates["submitButton"] = "newSubmitButton";
 templates["userMenu"] = "newUserMenu";
 templates["postTitle"] = "newPostTitle";
+templates["postDiscuss"] = "newPostDiscuss";
 
 
