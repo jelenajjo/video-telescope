@@ -22,7 +22,7 @@ http
 
 iron:router
 
-meteorhacks:fast-render
+meteorhacks:fast-render@2.3.2
 meteorhacks:subs-manager
 meteorhacks:npm
 
