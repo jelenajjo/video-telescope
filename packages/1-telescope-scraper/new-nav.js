@@ -1,4 +1,4 @@
-Template[getTemplate('nwNav')].helpers({
+Template[getTemplate('newNav')].helpers({
   headerClass: function () {
     var headerClass = "";
     var bgBrightness = tinycolor(Settings.get('headerColor')).getBrightness();
