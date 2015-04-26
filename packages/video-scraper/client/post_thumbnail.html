@@ -1,7 +1,7 @@
 <template name="postThumbnail">
   {{#if thumbnailUrl}}
     <div class="post-thumbnail" aria-hidden="true">
-      <a class="post-thumbnail-link {{playVideoClass}}" href="{{postLink}}" target="_blank">
+      <a class="post-thumbnail-link {{playVideoClass}}" href="{{postLink}}">
         <img class="post-thumbnail-image" onerror="this.style.display='none';" aria-hidden="true"
              src="{{crop this thumbnailUrl '350x200'}}"/>
       </a>
