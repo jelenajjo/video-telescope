@@ -11,6 +11,8 @@ Package.onUse(function (api) {
   api.use('twbs:bootstrap@3.3.4', 'client');
   api.use('natestrauser:font-awesome@4.3.0', 'client');
 
+  api.addFiles('head.html' , 'client');
+
   api.addFiles('newTemplates.js', 'client');
   api.addFiles('style.css', 'client');
   api.addFiles('new-nav.html' , 'client');
