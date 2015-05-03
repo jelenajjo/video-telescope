@@ -167,25 +167,8 @@ Meteor.startup(function() {
 
     // Posts list pages
     var paths = [
-      {page: "/", lastmod: _getLatest(Settings.get("defaultView", "top")), changefreq: "hourly"},
-      {page: "/top", lastmod: _getLatest("top"), changefreq: "hourly"},
-      {page: "/new", lastmod: _getLatest("new"), changefreq: "hourly"},
-      {page: "/best", lastmod: _getLatest("best"), changefreq: "daily"},
+      {page: "/", lastmod: _getLatest(Settings.get("defaultView", "top")), changefreq: "hourly"}
     ];
-
-    // Categories (if telescope-tags is included)
-    if (typeof Categories !== "undefined") {
-      Categories.find({}, {fields: {"slug": 1}}).forEach(function(category) {
-        var lastMod = _getLatest("category", {category: category.slug});
-        if (lastMod) {
-          paths.push({
-            page: "/category/" + category.slug,
-            lastmod: lastMod,
-            changefreq: "hourly"
-          })
-        }
-      });
-    }
 
     // Individual post pages: include 100 latest in each of "top", "new", and
     // "best". Aggregate them to avoid duplication.
