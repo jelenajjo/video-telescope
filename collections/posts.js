@@ -484,7 +484,7 @@ Meteor.methods({
 
     // run all post submit server callbacks on modifier successively
     modifier = postEditMethodCallbacks.reduce(function(result, currentFunction) {
-        return currentFunction(result);
+        return currentFunction(result, post);
     }, modifier);
 
     // ------------------------------ Update ------------------------------ //

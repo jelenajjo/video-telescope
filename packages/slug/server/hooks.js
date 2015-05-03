@@ -8,11 +8,11 @@ var slugify = function (text) {
     .replace(/[\-\/]+$/, '');         // Trim -,/ from end of text
 };
 
-var generateSlug = function(title) {
+var generateSlug = function(title, postId) {
   var slug = slugify(title);
   var temp = 2, oldSlug = slug;
 
-  while (Posts.find({slug: slug}).count() > 0) {
+  while (Posts.find({slug: slug, _id: {$ne: postId}}).count() > 0) {
     slug = oldSlug + '-' + temp;
     temp++;
   }
@@ -23,4 +23,15 @@ var generateSlug = function(title) {
 postSubmitMethodCallbacks.push(function (post) {
   post.slug = generateSlug(post.title);
   return post;
+});
+
+postEditMethodCallbacks.push(function(modifier, post) {
+  var newTitle = modifier.$set && modifier.$set.title;
+
+  if (newTitle !== post.title) {
+    var slug = generateSlug(newTitle, post._id);
+    modifier.$set.slug = slug;
+  }
+
+  return modifier;
 });
