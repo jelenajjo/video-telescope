@@ -25,7 +25,8 @@ Package.onUse(function(api) {
     'private/views/posts/post-body.html',
     'private/views/posts/post-item.html',
     'private/views/posts/post-page.html',
-    'private/views/main.html'
+    'private/views/main.html',
+    'private/views/noindex.html',
     ], 'server',{isAsset:true});
 
   api.addFiles([

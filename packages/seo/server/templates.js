@@ -4,6 +4,8 @@ SSR.compileTemplate('layout',Assets.getText('private/views/common/layout.html'))
 
 SSR.compileTemplate('openGraph',Assets.getText('private/views/common/open-graph.html'));
 
+SSR.compileTemplate('noindex',Assets.getText('private/views/noindex.html'));
+
 SSR.compileTemplate('main',Assets.getText('private/views/main.html'));
 Template.main.helpers({
   doctype:function(){

@@ -43,3 +43,9 @@ seoPicker.route('/p/:slug', function(params, req, res) {
 
   res.end(html);
 });
+
+seoPicker.route('/:noindex', function(params, req, res) {
+  var html = SSR.render('noindex');
+
+  res.end(html);
+});
