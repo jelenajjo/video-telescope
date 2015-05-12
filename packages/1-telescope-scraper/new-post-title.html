@@ -1,3 +1,7 @@
 <template name="newPostTitle">
-  <h4 class="post-title">{{title}}</h4>
+  {{#if thumbnailUrl}}
+    <h4 class="post-title">{{title}}</h4>
+  {{else}}
+    <h4 class="post-title"><a href="{{postLink}}">{{title}}</a></h4>
+  {{/if}}
 </template>

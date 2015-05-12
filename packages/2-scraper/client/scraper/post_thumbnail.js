@@ -1,4 +1,4 @@
-Template[getTemplate('postThumbnail')].helpers({
+Template.postThumbnail.helpers({
   postLink: function () {
     return !!this.slug ? "/p/"+this.slug : "/posts/"+this._id;
   },

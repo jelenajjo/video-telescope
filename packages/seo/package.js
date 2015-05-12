@@ -6,7 +6,7 @@ Package.onUse(function(api) {
     'meteorhacks:ssr@2.1.1',
     'meteorhacks:picker@1.0.2',
     'momentjs:moment',
-    'slug',
+    'scraper',
     'templating',
     'underscore',
     'iron:router',

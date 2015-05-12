@@ -81,9 +81,9 @@ var downloadVideo = function (post) {
 
   return post;
 };
-postAfterSubmitMethodCallbacks.push(downloadVideo);
+Telescope.callbacks.register("postSubmitAsync", downloadVideo);
 
-postAfterEditMethodCallbacks.push(function(modifier, post) {
+Telescope.callbacks.register("postEditAsync", function(modifier, post) {
   var newVideoUrl = modifier.$set && modifier.$set.videoUrl;
 
   if (newVideoUrl !== post.videoUrl) {
@@ -114,7 +114,7 @@ var beforeSubmit = function(post) {
 
   return post;
 };
-postSubmitMethodCallbacks.push(beforeSubmit);
+Telescope.callbacks.register("postSubmit", beforeSubmit);
 
 Scraper = {
   general: function(url) {

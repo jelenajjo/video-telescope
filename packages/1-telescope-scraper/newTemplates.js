@@ -1,12 +1,10 @@
-templates["nav"] = "newNav";
-templates["post_page"] = "newPost-page";
-templates["layout"] = "newLayout";
-templates["comment_form"] = "newComment-form";
-templates["comment_item"] = "newComment-item";
-templates["postUpvote"] = "newPostUpvote";
-templates["submitButton"] = "newSubmitButton";
-templates["userMenu"] = "newUserMenu";
-templates["postTitle"] = "newPostTitle";
-templates["postDiscuss"] = "newPostDiscuss";
-
-
+Template.newNav.replaces('nav');
+Template['newPost-page'].replaces('post_page');
+Template.newLayout.replaces('layout');
+Template['newComment-form'].replaces('comment_submit');
+Template['newComment-item'].replaces('comment_item');
+Template.newPostUpvote.replaces('postUpvote');
+Template.newSubmitButton.replaces('submitButton');
+Template.newUserMenu.replaces('userMenu');
+Template.newPostTitle.replaces('post_title');
+Template.newPostDiscuss.replaces('postDiscuss');

@@ -1,88 +1,84 @@
-var videoProperty = {
-  propertyName: 'videoUrl',
-  propertySchema: {
+Posts.registerField({
+  fieldName: 'videoUrl',
+  fieldSchema: {
     type: String,
     optional: true,
+    editableBy: ["member", "admin"],
     autoform: {
       editable: true,
       type: 'bootstrap-postvideo'
     }
   }
-};
-addToPostSchema.push(videoProperty);
+});
 
-var thumbnailProperty = {
-  propertyName: 'thumbnailUrl',
-  propertySchema: {
+Posts.registerField({
+  fieldName: 'thumbnailUrl',
+  fieldSchema: {
     type: String,
     optional: true,
+    editableBy: ["member", "admin"],
     autoform: {
       editable: true,
       type: 'bootstrap-postthumbnail'
     }
   }
-};
-addToPostSchema.push(thumbnailProperty);
+});
 
-var originUrlProperty = {
-  propertyName: 'originUrl',
-  propertySchema: {
+Posts.registerField({
+  fieldName: 'originUrl',
+  fieldSchema: {
     type: String,
     optional: true,
+    editableBy: ["member", "admin"],
     autoform: {
       editable: true,
       type: 'hidden'
     }
   }
-};
-addToPostSchema.push(originUrlProperty);
+});
 
-var videoLocationProperty = {
-  propertyName: 'videoLocation',
-  propertySchema: {
+Posts.registerField({
+  fieldName: 'videoLocation',
+  fieldSchema: {
     type: String,
     optional: true,
     autoform: {
       omit: true
     }
   }
-};
-addToPostSchema.push(videoLocationProperty);
+});
 
-var videoUrlUpdatedAtProperty = {
-  propertyName: 'videoUrlUpdatedAt',
-  propertySchema: {
+Posts.registerField({
+  fieldName: 'videoUrlUpdatedAt',
+  fieldSchema: {
     type: Date,
     optional: true,
     autoform: {
       omit: true
     }
   }
-};
-addToPostSchema.push(videoUrlUpdatedAtProperty);
+});
 
-var videoPlayLocationProperty = {
-  propertyName: 'videoPlayLocation',
+Posts.registerField({
+  fieldName: 'videoPlayLocation',
   allowed: ['s3', 'remote'],
-  propertySchema: {
+  fieldSchema: {
     type: String,
     optional: true,
+    editableBy: ["member", "admin"],
     autoform: {
       options: {s3: 's3', remote: 'remote'}
     }
   }
-};
-addToPostSchema.push(videoPlayLocationProperty);
+});
 
-postThumbnail.push({
+Telescope.modules.register("postThumbnail", {
   template: 'postThumbnail',
   order: 15
 });
 
 // add callback that adds "has-thumbnail" or "no-thumbnail" CSS classes
-postClassCallbacks.push(function (post, postClass){
+Telescope.callbacks.register("postClass", function (post, postClass){
   var thumbnailClass = !!post.thumbnailUrl ? "has-thumbnail" : "no-thumbnail";
   return postClass + " " + thumbnailClass;
 });
-
-templates.post_body = 'video_post_body';

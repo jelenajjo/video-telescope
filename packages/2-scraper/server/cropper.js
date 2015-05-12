@@ -132,9 +132,9 @@ var cropThumbnail = function (post) {
     console.log(e);
   }
 };
-postAfterSubmitMethodCallbacks.push(cropThumbnail);
+Telescope.callbacks.register("postSubmitAsync", cropThumbnail);
 
-postAfterEditMethodCallbacks.push(function(modifier, post) {
+Telescope.callbacks.register("postEditAsync", function(modifier, post) {
   var newThumbnailUrl = modifier.$set && modifier.$set.thumbnailUrl;
 
   if (newThumbnailUrl !== post.thumbnailUrl) {

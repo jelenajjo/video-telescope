@@ -1,8 +1,8 @@
 /* global Cropper: true */
 
-var imagesProperty = {
-  propertyName: 'croppedImages',
-  propertySchema: {
+Posts.registerField({
+  fieldName: 'croppedImages',
+  fieldSchema: {
     type: [Object],
     optional: true,
     autoform: {
@@ -10,27 +10,25 @@ var imagesProperty = {
       omit: true
     }
   }
-};
+});
 
-addToPostSchema.push(imagesProperty);
-
-addToPostSchema.push({
-  propertyName: 'croppedImages.$.key',
-  propertySchema: {
+Posts.registerField({
+  fieldName: 'croppedImages.$.key',
+  fieldSchema: {
     type: String
   }
 });
 
-addToPostSchema.push({
-  propertyName: 'croppedImages.$.url',
-  propertySchema: {
+Posts.registerField({
+  fieldName: 'croppedImages.$.url',
+  fieldSchema: {
     type: String
   }
 });
 
-var allowedSizesProperty = {
-  propertyName: 'allowedImageSizes',
-  propertySchema: {
+Settings.registerField({
+  fieldName: 'allowedImageSizes',
+  fieldSchema: {
     type: String,
     optional: true,
     autoform: {
@@ -39,8 +37,7 @@ var allowedSizesProperty = {
       private: true
     }
   }
-};
-Settings.addToSchema(allowedSizesProperty);
+});
 
 Cropper = {
   getCroppedUrl: function(post, imageUrl, size) {

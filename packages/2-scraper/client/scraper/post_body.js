@@ -1,8 +1,10 @@
-Template.video_post_body.onCreated(function() {
+Template.post_body.replaces('post_body');
+
+Template.post_body.onCreated(function() {
   this.ready = new ReactiveVar(false);
 });
 
-Template.video_post_body.onRendered(function() {
+Template.post_body.onRendered(function() {
   var self = this;
   var data = Template.currentData();
 
@@ -20,8 +22,10 @@ Template.video_post_body.onRendered(function() {
   });
 });
 
-Template.video_post_body.helpers({
+Template.post_body.helpers({
   ready: function() {
     return Template.instance().ready.get();
   }
 });
+
+Template.video_post_body.replaces('post_body');

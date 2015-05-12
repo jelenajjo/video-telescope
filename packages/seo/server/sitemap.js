@@ -155,8 +155,8 @@ Meteor.startup(function() {
    */
   sitemaps.add("/sitemap.xml", function() {
     var _getLatest = function(viewParamKey, terms) {
-      var params = getPostsParameters(
-        viewParameters[viewParamKey.toLowerCase()](terms)
+      var params = Posts.getSubParams(
+        Posts.views[viewParamKey.toLowerCase()](terms)
       );
       var post = Posts.findOne(params.find, {
         'fields': {'postedAt': 1},
@@ -174,7 +174,7 @@ Meteor.startup(function() {
     // "best". Aggregate them to avoid duplication.
     var postPages = {};
     _.each(["top", "new", "best"], function(key) {
-      var params = getPostsParameters(viewParameters[key]());
+      var params = Posts.getSubParams(Posts.views[key]());
       var posts = Posts.find(params.find, {
         limit: 100,
         sort: params.options.sort

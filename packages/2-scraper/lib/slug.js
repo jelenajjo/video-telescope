@@ -1,10 +1,25 @@
-PostSlugPageController = RouteController.extend({
-  template: getTemplate('post_page'),
+Posts.registerField({
+  fieldName: 'slug',
+  fieldSchema: {
+    type: String,
+    optional: true,
+    autoform: {
+      editable: false,
+      omit: true
+    }
+  }
+});
+
+
+/************ ROUTER *************/
+
+var PostSlugPageController = RouteController.extend({
+  template: 'post_page',
 
   waitOn: function() {
     this.postSubscription = coreSubscriptions.subscribe('singlePostBySlug', this.params.slug);
     this.postUsersSubscription = coreSubscriptions.subscribe('postUsersBySlug', this.params.slug);
-    this.commentSubscription = coreSubscriptions.subscribe('postCommentsBySlug', this.params.slug);
+    this.commentSubscription = coreSubscriptions.subscribe('commentsListBySlug', {view: 'postCommentsBySlug', postId: this.params._id});
   },
 
   post: function() {
@@ -44,10 +59,5 @@ Meteor.startup(function () {
   Router.route('/p/:slug', {
     name: 'post_page_by_slug',
     controller: PostSlugPageController
-  });
-});
-
-Meteor.startup(function () {
-  Meteor.startup(function () {
   });
 });

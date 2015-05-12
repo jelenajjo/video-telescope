@@ -1,20 +1,17 @@
 <template name="newLayout">
-
-{{> UI.dynamic template=css}}
+  {{> css}}
   <div class="outer-wrapper {{currentPage}} {{navLayout}}">
-    {{> UI.dynamic template=mobile_nav}}
+    {{> mobile_nav}}
     <div class="inner-wrapper template-{{pageName}}">
-      {{> UI.dynamic template=nav}}
+      {{> nav}}
       <div class="content-wrapper">
-       <div class="container">
-        {{> UI.dynamic template=messages}}
-        {{#each heroModules}}
-          {{> UI.dynamic template=getTemplate}}
-        {{/each}}
-        {{> yield "adminMenu"}}
-        {{> yield "postListTop"}}
-        {{> yield}}
-        {{> UI.dynamic template=footer}}
+        <div class="container">
+          {{> messages}}
+          {{> modules "hero"}}
+          {{> yield "adminMenu"}}
+          {{> yield "postListTop"}}
+          {{> yield}}
+          {{> footer}}
         </div>
       </div>
       <div class="overlay hidden"></div>

@@ -28,7 +28,6 @@ AutoForm.hooks({
     },
 
     onSuccess: function(formType, post) {
-      post = this.currentDoc;
       Events.track("edit post", {'postId': post._id});
       Router.go('post_page_by_slug', {slug: post.slug});
     },
