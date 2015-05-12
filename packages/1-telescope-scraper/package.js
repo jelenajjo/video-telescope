@@ -32,7 +32,7 @@ Package.onUse(function (api) {
   api.addFiles('new-post-title.html' , 'client');
   api.addFiles('new-post-discuss.html' , 'client');
 
-  api.addFiles('new-post-page.js' , 'client');
+  api.addFiles('post-bottom.js' , 'client');
   api.addFiles('new-post-upvote.js' , 'client');
   api.addFiles('new-nav.js' , 'client');
 

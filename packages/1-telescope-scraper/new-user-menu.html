@@ -1,8 +1,8 @@
 <template name="newUserMenu">
   {{#if isLoggedIn}}
-   {{> avatar user=currentUser size="large" shape="circle"}}
+    {{> avatar user=currentUser size="large" shape="circle"}}
     {{> menuComponent menuName="user" menuLabel=menuLabel menuItems=menuItems menuClass="header-submodule" menuMode=menuMode menuCollapsed=true}}
-  {{else}}
+    {{else}}
     <a class="account-link sign-in" href="{{pathFor route='atSignUp'}}">{{_ "sign_up"}}</a>
     <a class="account-link sign-up" href="{{pathFor route='atSignIn'}}">{{_ "sign_in"}}</a>
   {{/if}}

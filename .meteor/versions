@@ -1,3 +1,4 @@
+1-telescope-scraper@1.0.0
 accounts-base@1.2.0
 accounts-oauth@1.1.5
 accounts-password@1.1.1
@@ -81,6 +82,7 @@ momentjs:moment@2.10.3
 mongo@1.1.0
 mongo-livedata@1.0.8
 mrt:cookies@0.3.0
+natestrauser:font-awesome@4.3.0
 npm-bcrypt@0.7.8_2
 oauth@1.1.4
 oauth1@1.1.4
@@ -144,6 +146,7 @@ telescope:users@0.1.0
 templating@1.1.1
 tracker@1.0.7
 tsega:bootstrap3-datetimepicker@3.1.3_3
+twbs:bootstrap@3.3.4
 twitter@1.1.4
 ui@1.0.6
 underscore@1.0.3
