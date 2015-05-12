@@ -10,8 +10,7 @@ Package.onUse(function(api) {
     'templating',
     'underscore',
     'iron:router',
-    'telescope-lib',
-    'telescope-base',
+    'telescope:core',
   ], 'server');
 
   api.addFiles([

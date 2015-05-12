@@ -1,25 +1,14 @@
-var coreSubscriptions = new SubsManager({
-  // cache recent 50 subscriptions
-  cacheLimit: 50,
-  // expire any subscription after 30 minutes
-  expireIn: 30
-});
+/**
+ * Controller for daily view
+ */
+Posts.controllers.daily = Posts.controllers.list.extend({
 
-PostsDailyController = RouteController.extend({
-
-  onBeforeAction: function () {
-    this.render(getTemplate('postListTop'), {to: 'postListTop'});
-    this.next();
-  },
+  view: "daily",
 
   template: function() {
     // use a function to make sure the template is evaluated *after* any template overrides
-    return getTemplate('postsDaily');
-  },
-
-  subscriptions: function () {
-    // this.days = this.params.days ? this.params.days : daysPerPage;
-    // TODO: find a way to preload the first n posts of the first 5 days?
+    // TODO: still needed?
+    return 'postsDaily';
   },
 
   data: function () {
@@ -28,24 +17,15 @@ PostsDailyController = RouteController.extend({
     return {
       days: this.days
     };
-  },
+  }
 
-  getTitle: function () {
-    return i18n.t('daily');
-  },
-
-  getDescription: function () {
-    return i18n.t('day_by_day_view');
-  },
-
-  fastRender: true
 });
 
 Meteor.startup(function () {
 
   Router.route('/daily/:days?', {
     name: 'postsDaily',
-    controller: PostsDailyController
+    controller: Posts.controllers.daily
   });
 
 });

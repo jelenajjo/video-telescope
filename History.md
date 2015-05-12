@@ -1,3 +1,5 @@
+* Added `ctrl/cmd+enter` shortcut to submit comments (thanks @delgermurun!).
+
 ## v0.15.1 “PageScope”
 
 * Settings now have their own `telescope-settings` package (thanks @delgermurun!).
@@ -148,7 +150,7 @@
 * Added new setting to subscribe new user to mailing list automatically.
 * Added new `debug` setting.
 * `siteUrl` setting now affects `Meteor.absoluteUrl()`.
-* Added new `clog` function that only logs if `debug` setting is true.
+* Added new `Telescope.log` function that only logs if `debug` setting is true.
 * Simplified post module system, modules are not split in three zones anymore.
 * Added new `postThumbnail` hook to show Embedly thumbnail.
 * Simplified Hubble theme CSS for both desktop and mobile.

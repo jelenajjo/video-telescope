@@ -4,38 +4,38 @@ var confirmSubscription = function () {
   Meteor.setInterval(function () {
     // required because otherwise banner disappears immediately after confirmation
     dismissBanner();
-  }, 2000)
-}
+  }, 2000);
+};
 
 var dismissBanner = function () {
   $('.newsletter-banner').fadeOut('fast', function () {
     if(Meteor.user()){
       // if user is connected, change setting in their account
-      setUserSetting('showBanner', false);
+      Users.setUserSetting('showBanner', false);
     }else{
       // set cookie
       Cookie.set('showBanner', "no");
     }
   });
-}
+};
 
 Meteor.startup(function () {
-  Template[getTemplate('newsletterBanner')].helpers({
+  Template.newsletterBanner.helpers({
     siteName: function () {
       return Settings.get('title');
     },
     isNotConnected: function () {
-      return !Meteor.user()
+      return !Meteor.user();
     },
     showBanner: function () {
       // note: should not be reactive
       if(
-            Settings.get('showBanner', false) == false
-        ||  !can.view(Meteor.user())
-        ||  Router.current().location.get().path != '/'
-        ||  Cookie.get('showBanner') == "no"
-        ||  (Meteor.user() && getUserSetting('showBanner', true) == false)
-        ||  (Meteor.user() && getUserSetting('subscribedToNewsletter', false) == true)
+            Settings.get('showBanner', false) === false
+        ||  !Users.can.view(Meteor.user())
+        ||  Router.current().location.get().path !== '/'
+        ||  Cookie.get('showBanner') === "no"
+        ||  (Meteor.user() && Users.getUserSetting('showBanner', true) === false)
+        ||  (Meteor.user() && Users.getUserSetting('subscribedToNewsletter', false) === true)
       ){
         return false;
       }else{
@@ -44,7 +44,7 @@ Meteor.startup(function () {
     }
   });
 
-  Template[getTemplate('newsletterBanner')].events({
+  Template.newsletterBanner.events({
     'click .newsletter-button': function (e) {
       e.preventDefault();
       var $banner = $('.newsletter-banner');
@@ -64,7 +64,7 @@ Meteor.startup(function () {
         var email = $('.newsletter-email').val();
         if(!email){
           alert('Please fill in your email.');
-          return
+          return;
         }
         $banner.addClass('show-loader');
         Meteor.call('addEmailToMailChimpList', email, function (error, result) {

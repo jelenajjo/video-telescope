@@ -3,7 +3,7 @@ Package.describe({summary: 'Video scraper'});
 Package.onUse(function(api) {
   var both = ['client', 'server'];
   api.use([
-    'telescope-base',
+    'telescope:core',
     'tap:i18n',
     'aldeed:autoform',
     'edgee:slingshot@0.6.1'

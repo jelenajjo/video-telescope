@@ -1,14 +1,14 @@
-Template[getTemplate('notificationsMenu')].helpers({
+Template.notificationsMenu.helpers({
   menuLabel: function () {
     var notificationsCount;
     var notifications=Herald.collection.find({userId: Meteor.userId(), read: false}, {sort: {timestamp: -1}}).fetch();
 
-    if(notifications.length==0){
-      notificationsCount = __('0');
-    }else if(notifications.length==1){
-      notificationsCount = __('1');
+    if(notifications.length === 0){
+      notificationsCount = __('no_notifications');
+    }else if(notifications.length === 1){
+      notificationsCount = __('1_notification');
     }else{
-      notificationsCount = notifications.length+' '+__('');
+      notificationsCount = notifications.length+' '+ __('notifications');
     }
 
     return notificationsCount;
@@ -18,15 +18,16 @@ Template[getTemplate('notificationsMenu')].helpers({
     var markAllAsRead = [{
       template: 'notificationsMarkAsRead'
     }];
+    var menuItems;
     if (notifications.length) {
-      var menuItems = markAllAsRead.concat(_.map(notifications, function (notification) {
+      menuItems = markAllAsRead.concat(_.map(notifications, function (notification) {
         return {
           template: "notificationItem",
           data: notification
-        }
+        };
       }));
     } else {
-      var menuItems = [];
+      menuItems = [];
     }
     return menuItems;
   },

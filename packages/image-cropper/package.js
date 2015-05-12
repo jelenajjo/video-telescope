@@ -3,8 +3,7 @@ Package.describe({summary: 'Image cropper'});
 Package.onUse(function(api) {
   var both = ['client', 'server'];
   api.use([
-    'telescope-base',
-    'telescope-settings',
+    'telescope:core'
   ], both);
 
   api.use([

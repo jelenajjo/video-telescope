@@ -5,7 +5,7 @@ Package.describe({
 });
 
 Package.onUse(function (api) {
-  api.use('telescope-base');
+  api.use('telescope:core');
   api.use('templating');
   api.use('tap:i18n');
   api.use('twbs:bootstrap@3.3.4', 'client');

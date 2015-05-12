@@ -3,7 +3,7 @@ Package.describe({summary: 'Slug'});
 Package.onUse(function(api) {
   var both = ['client', 'server'];
   api.use([
-    'telescope-base',
+    'telescope:core',
     'iron:router',
   ], both);
 

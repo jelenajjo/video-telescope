@@ -1,4 +1,4 @@
-Pages = {};
+Pages = new Mongo.Collection('pages');
 
 Pages.schema = new SimpleSchema({
   title: {
@@ -20,30 +20,32 @@ Pages.schema = new SimpleSchema({
   }
 });
 
-Pages.collection = new Meteor.Collection('pages');
-Pages.collection.attachSchema(Pages.schema);
 
-Pages.collection.before.insert(function (userId, doc) {
+Pages.schema.internationalize();
+
+Pages.attachSchema(Pages.schema);
+
+Pages.before.insert(function (userId, doc) {
   // if no slug has been provided, generate one
   if (!doc.slug)
-    doc.slug = slugify(doc.title);
+    doc.slug = Telescope.utils.slugify(doc.title);
 });
 
-primaryNav.push({
+Telescope.modules.register("primaryNav", {
   template: "pagesMenu",
   order: 5
 });
 
-mobileNav.push({
+Telescope.modules.register("mobileNav", {
   template: 'pagesMenu',
   order: 5
 });
 
 Meteor.startup(function () {
-  Pages.collection.allow({
-    insert: isAdminById,
-    update: isAdminById,
-    remove: isAdminById
+  Pages.allow({
+    insert: Users.is.adminById,
+    update: Users.is.adminById,
+    remove: Users.is.adminById
   });
 
   Meteor.methods({

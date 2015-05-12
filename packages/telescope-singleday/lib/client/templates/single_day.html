@@ -1,6 +1,4 @@
-<template name="singleDay">
-  {{#if showDateNav}}
-    {{> Template.dynamic template=singleDayNav}}
-  {{/if}}
-  {{> Template.dynamic template=posts_list data=context}}
+<template name="single_day">
+  {{> single_day_nav}}
+  {{> postsListController}}
 </template>

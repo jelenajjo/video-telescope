@@ -1,4 +1,4 @@
-Template[getTemplate('updateBanner')].helpers({
+Template.updateBanner.helpers({
   showBanner: function () {
     return Session.get('updateVersion');
   },
@@ -6,7 +6,7 @@ Template[getTemplate('updateBanner')].helpers({
     return Session.get('updateVersion');
   },
   currentVersion: function () {
-    return telescopeVersion;
+    return Telescope.VERSION;
   },
   message: function () {
     return Session.get('updateMessage');

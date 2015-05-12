@@ -3,7 +3,7 @@ Package.describe({summary: 'Images'});
 Package.onUse(function(api) {
   var both = ['client', 'server'];
   api.use([
-    'telescope-base',
+    'telescope:core',
     'aldeed:autoform',
     'edgee:slingshot@0.6.1',
   ], both);

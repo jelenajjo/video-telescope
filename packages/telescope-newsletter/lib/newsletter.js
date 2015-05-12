@@ -1,4 +1,4 @@
-campaignSchema = new SimpleSchema({
+var campaignSchema = new SimpleSchema({
  _id: {
     type: String,
     optional: true
@@ -29,10 +29,10 @@ Campaigns = new Meteor.Collection("campaigns", {
   schema: campaignSchema
 });
 
-addToPostSchema.push(
+Posts.registerField(
   {
-    propertyName: 'scheduledAt',
-    propertySchema: {
+    fieldName: 'scheduledAt',
+    fieldSchema: {
       type: Date,
       optional: true,
       autoform: {
@@ -45,8 +45,8 @@ addToPostSchema.push(
 // Settings
 
 var enableNewsletter = {
-  propertyName: 'enableNewsletter',
-  propertySchema: {
+  fieldName: 'enableNewsletter',
+  fieldSchema: {
     type: Boolean,
     optional: true,
     autoform: {
@@ -54,12 +54,12 @@ var enableNewsletter = {
       instructions: 'Enable newsletter (requires restart).'
     }
   }
-}
-Settings.addToSchema(enableNewsletter);
+};
+Settings.registerField(enableNewsletter);
 
 var showBanner = {
-  propertyName: 'showBanner',
-  propertySchema: {
+  fieldName: 'showBanner',
+  fieldSchema: {
     type: Boolean,
     optional: true,
     label: 'Newsletter banner',
@@ -68,51 +68,53 @@ var showBanner = {
       instructions: 'Show newsletter sign-up form on the front page.'
     }
   }
-}
-Settings.addToSchema(showBanner);
+};
+Settings.registerField(showBanner);
 
 var mailChimpAPIKey = {
-  propertyName: 'mailChimpAPIKey',
-  propertySchema: {
+  fieldName: "mailChimpAPIKey",
+  fieldSchema: {
     type: String,
     optional: true,
+    private: true,
     autoform: {
-      group: 'newsletter',
-      private: true
+      group: "newsletter",
+      class: "private-field"
     }
   }
-}
-Settings.addToSchema(mailChimpAPIKey);
+};
+Settings.registerField(mailChimpAPIKey);
 
 var mailChimpListId = {
-  propertyName: 'mailChimpListId',
-  propertySchema: {
+  fieldName: 'mailChimpListId',
+  fieldSchema: {
     type: String,
     optional: true,
+    private: true,
     autoform: {
       group: 'newsletter',
       instructions: 'The ID of the list you want to send to.',
-      private: true
+      class: "private-field"
     }
   }
-}
-Settings.addToSchema(mailChimpListId);
+};
+Settings.registerField(mailChimpListId);
 
 var postsPerNewsletter = {
-  propertyName: 'postsPerNewsletter',
-  propertySchema: {
+  fieldName: 'postsPerNewsletter',
+  fieldSchema: {
     type: Number,
     optional: true,
     autoform: {
       group: 'newsletter'
     }
   }
-}
-Settings.addToSchema(postsPerNewsletter);
+};
+Settings.registerField(postsPerNewsletter);
 
 var newsletterFrequency = {
-  propertyName: 'newsletterFrequency',
-  propertySchema: {
+  fieldName: 'newsletterFrequency',
+  fieldSchema: {
     type: Number,
     optional: true,
     autoform: {
@@ -138,12 +140,12 @@ var newsletterFrequency = {
       ]
     }
   }
-}
-Settings.addToSchema(newsletterFrequency);
+};
+Settings.registerField(newsletterFrequency);
 
 var newsletterTime = {
-  propertyName: 'newsletterTime',
-  propertySchema: {
+  fieldName: 'newsletterTime',
+  fieldSchema: {
     type: String,
     optional: true,
     defaultValue: '00:00',
@@ -153,12 +155,12 @@ var newsletterTime = {
       type: 'time'
     }
   }
-}
-Settings.addToSchema(newsletterTime);
+};
+Settings.registerField(newsletterTime);
 
 var autoSubscribe = {
-  propertyName: 'autoSubscribe',
-  propertySchema: {
+  fieldName: 'autoSubscribe',
+  fieldSchema: {
     type: Boolean,
     optional: true,
     autoform: {
@@ -166,11 +168,11 @@ var autoSubscribe = {
       instructions: 'Automatically subscribe new users on sign-up.'
     }
   }
-}
-Settings.addToSchema(autoSubscribe);
+};
+Settings.registerField(autoSubscribe);
 
 // create new "campaign" lens for all posts from the past X days that haven't been scheduled yet
-viewParameters.campaign = function (terms) {
+Posts.views.register("campaign", function (terms) {
   return {
     find: {
       scheduledAt: {$exists: false},
@@ -180,20 +182,20 @@ viewParameters.campaign = function (terms) {
     },
     options: {sort: {sticky: -1, score: -1}}
   };
-}
+});
 
-heroModules.push({
+Telescope.modules.register("hero", {
   template: 'newsletterBanner',
   order: 10
 });
 
  function subscribeUserOnCreation (user) {
-  if (!!Settings.get('autoSubscribe') && !!getEmail(user)) {
+  if (!!Settings.get('autoSubscribe') && !!Users.getEmail(user)) {
     addToMailChimpList(user, false, function (error, result) {
-      console.log(error)
-      console.log(result)
+      console.log(error);
+      console.log(result);
     });
   }
   return user;
 }
-userCreatedCallbacks.push(subscribeUserOnCreation);
+Telescope.callbacks.register("onCreateUser", subscribeUserOnCreation);
