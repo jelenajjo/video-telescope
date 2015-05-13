@@ -15,6 +15,7 @@ Package.onUse(function (api) {
     'accounts-base',
     'accounts-password',
     'accounts-twitter',
+    'accounts-facebook',
     'reactive-var',
     'http',
     'email',
