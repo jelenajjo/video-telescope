@@ -23,7 +23,7 @@ Package.onUse(function (api) {
   api.addFiles('post-bottom.html' , 'client');
   api.addFiles('new-post-page.html' , 'client');
   api.addFiles('new-layout.html' , 'client');
-  api.addFiles('new-comment-form.html' , 'client');
+  api.addFiles('new-comment-submit.html' , 'client');
   api.addFiles('new-comment-item.html' , 'client');
   api.addFiles('new-post-upvote.html' , 'client');
 

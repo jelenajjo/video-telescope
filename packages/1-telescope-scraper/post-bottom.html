@@ -1,77 +1,74 @@
 <template name="postBottom">
-    <div class="row videoInfo">
-        <div class="col-md-8">
-            <h1>{{title}}</h1>
-            <div class="userAuthor">
-                {{> postAvatars}}
-                {{> postAuthor}}
-                
-            </div>
-            <div role="tabpanel">
+  <div class="row videoInfo">
+    <div class="col-md-8">
+      <h1>{{title}}</h1>
+      <div class="userAuthor">
+        {{> postAvatars}}
+        {{> postAuthor}}
 
-      <!-- Nav tabs -->
-      <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">About</a></li>
-        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Share</a></li>
-        <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Add to</a></li>
-      </ul>
-
-      <!-- Tab panes -->
-      <div class="tab-content">
-        <div role="tabpanel" class="tab-pane active" id="home"><p>
-            {{{htmlBody}}}
-        </p>
-        <div class="publishedTime">
-            {{#if postedAt}}<span class="post-time">Published {{timeAgo postedAt}}</span>{{/if}}
-            {{#if isAdmin}}
- <p>Video location: {{videoLocation}}</p>
-{{/if}}
-       {{#if canEdit this}}
-       <div class="editPost">
-     <a href="{{pathFor route='post_edit' _id=_id}}" class="btn btn-warning edit-link goto-edit">{{_ "edit"}}</a>
       </div>
-    {{/if}}     
-           
-        </div>
-        </div>
-        <div role="tabpanel" class="tab-pane" id="profile"></div>
-        <div role="tabpanel" class="tab-pane" id="messages"></div>
-      </div>
+      <div role="tabpanel">
 
-            </div>
-            <div class="videoCommenting">
-            <div class="commHeading">
-                <h2>Comments</h2>
-      <span class="comments-count">{{commentCount}}</span>
-            </div>
-            
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+          <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">About</a></li>
+          <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Share</a></li>
+          <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Add to</a></li>
+        </ul>
 
-            {{> UI.dynamic template=comment_form}}
-            {{> UI.dynamic template=comment_list}}
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="voteStatus">
-                <!--<ul>
-                    <li><i class="fa fa-thumbs-up"></i>5,189</li>
-                    <li class="center">246,997</li>
-                    <li><i class="fa fa-thumbs-down"></i>98</li>
-                </ul>-->
-                <div class="baseScore">
-                    <span class="points">{{baseScore}}</span>
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div role="tabpanel" class="tab-pane active" id="home"><p>
+              {{{htmlBody}}}
+            </p>
+            <div class="publishedTime">
+              {{#if postedAt}}<span class="post-time">Published {{timeAgo postedAt}}</span>{{/if}}
+              {{#if isAdmin}}
+                <p>Video location: {{videoLocation}}</p>
+              {{/if}}
+              {{#if canEdit this}}
+                <div class="editPost">
+                  <a href="{{pathFor route='post_edit' _id=_id}}" class="btn btn-warning edit-link goto-edit">{{_ "edit"}}</a>
                 </div>
-                
-                <div class="progress">
-  <div class="progress-bar" role="progressbar" aria-valuemin="0%" aria-valuemax="100%" style="width: {{baseScore}}%;">
-  </div>
-</div>
+              {{/if}}
+
             </div>
-            <div class="voteButtons">
-                {{> newPostUpvote}}
-               
-            </div>
-            
-            
+          </div>
+          <div role="tabpanel" class="tab-pane" id="profile"></div>
+          <div role="tabpanel" class="tab-pane" id="messages"></div>
         </div>
+
+      </div>
+      <div class="videoCommenting">
+        <div class="commHeading">
+          <h2>Comments</h2>
+          <span class="comments-count">{{commentCount}}</span>
+        </div>
+
+
+        {{> comment_submit}}
+        {{> comment_list}}
+      </div>
     </div>
+    <div class="col-md-4">
+      <div class="voteStatus">
+        <!--<ul>
+          <li><i class="fa fa-thumbs-up"></i>5,189</li>
+          <li class="center">246,997</li>
+          <li><i class="fa fa-thumbs-down"></i>98</li>
+        </ul>-->
+        <div class="baseScore">
+          <span class="points">{{baseScore}}</span>
+        </div>
+
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" aria-valuemin="0%" aria-valuemax="100%" style="width: {{baseScore}}%;">
+          </div>
+        </div>
+      </div>
+      <div class="voteButtons">
+        {{> newPostUpvote}}
+      </div>
+    </div>
+  </div>
 </template>
