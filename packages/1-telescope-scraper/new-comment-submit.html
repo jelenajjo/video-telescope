@@ -1,6 +1,6 @@
 <template name="newComment-submit">
   {{#if canComment}}
-   {{> postAvatars}}
+   {{> post_avatars}}
     <div class="comment-new module">
       {{> quickForm collection="Comments" id="submitCommentForm" template="bootstrap3-horizontal" input-col-class="controls" type="method" meteormethod="submitComment" fields=commentFields parentContext=this}}
     </div>

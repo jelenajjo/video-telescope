@@ -1,16 +1,16 @@
-Template.postUpvote.helpers({
-  downvoted: function(){
+Template.post_upvote.helpers({
+  downvoted: function() {
     var user = Meteor.user();
     if(!user) return false;
     return _.include(this.downvoters, user._id);
   }
 });
 
-Template.postUpvote.events({
+Template.post_upvote.events({
   'click .downvote-link': function(e) {
     var post = this;
     e.preventDefault();
-    if(!Meteor.user()){
+    if(!Meteor.user()) {
       Router.go('atSignIn');
       Messages.flash(i18n.t("please_log_in_first"), "info");
     }
