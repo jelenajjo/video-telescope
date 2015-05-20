@@ -25,12 +25,10 @@ Template.registerHelper('canPost', function() {
 Template.registerHelper('canComment', function() {
   return Users.can.comment(Meteor.user());
 });
-Template.registerHelper('isAdmin', function(showError) {
+Template.registerHelper('isAdmin', function(user) {
+  var user = typeof user === "undefined" ? Meteor.user() : user;
   if (Users.is.admin(Meteor.user())) {
     return true;
-  }
-  if ((typeof showError === 'string') && (showError === 'true')) {
-    Messages.flash(i18n.t('sorry_you_do_not_have_access_to_this_page'), 'error');
   }
   return false;
 });
@@ -63,21 +61,21 @@ Template.registerHelper('pluralize', function(count, string) {
   return i18n.t(string);
 });
 
-Template.registerHelper('profileUrl', function(userOrUserId) {
+Template.registerHelper('getProfileUrl', function(userOrUserId) {
   var user = (typeof userOrUserId === 'string') ? Meteor.users.findOne(userOrUserId) :  userOrUserId;
   if (!!user) {
     return Users.getProfileUrl(user);
   }
 });
 
-Template.registerHelper('userName', function(userOrUserId) {
+Template.registerHelper('getUsername', function(userOrUserId) {
   var user = (typeof userOrUserId === 'string') ? Meteor.users.findOne(userOrUserId) :  userOrUserId;
   if (!!user) {
     return Users.getUserName(user);
   }
 });
 
-Template.registerHelper('displayName', function(userOrUserId) {
+Template.registerHelper('getDisplayName', function(userOrUserId) {
   var user = (typeof userOrUserId === 'string') ? Meteor.users.findOne(userOrUserId) :  userOrUserId;
   if (!!user) {
     return Users.getDisplayName(user);

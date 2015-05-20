@@ -1,7 +1,7 @@
 Releases = new Meteor.Collection('releases');
 
-Telescope.modules.register("hero", {
-  template: 'currentRelease'
+Telescope.modules.add("hero", {
+  template: 'current_release'
 });
 
 Telescope.subscriptions.preload('currentRelease');

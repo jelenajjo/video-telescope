@@ -1,4 +1,4 @@
-Telescope.menus.register("userMenu", [
+Telescope.menuItems.add("userMenu", [
   {
     route: function () {
       return Router.path('user_profile', {_idOrSlug: Meteor.user().telescope.slug});
@@ -23,5 +23,14 @@ Telescope.menus.register("userMenu", [
     route: 'signOut',
     label: 'sign_out',
     description: 'sign_out'
+  }
+]);
+
+// array containing items in the admin menu
+Telescope.menuItems.add("adminMenu", [
+  {
+    route: 'users_dashboard',
+    label: 'users',
+    description: 'users_dashboard'
   }
 ]);

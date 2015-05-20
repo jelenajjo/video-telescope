@@ -62,7 +62,7 @@ Router._filters = {
     if(!this.ready() || Meteor.loggingIn()){
       this.render('loading');
     } else if (!Users.can.view()) {
-      this.render('no_rights');
+      this.render('no_invite');
     } else {
       this.next();
     }
@@ -80,6 +80,7 @@ Router._filters = {
 
   canViewRejectedPosts: function () {
     var post = this.data();
+    var user = Meteor.user();
     if (!!post && post.status === Posts.config.STATUS_REJECTED && !Users.can.viewRejectedPost(user, post)) {
       this.render('no_rights');
     } else {
@@ -200,17 +201,18 @@ Meteor.startup( function (){
     // Before Hooks
 
     Router.onBeforeAction(filters.isReady);
+    Router.onBeforeAction(filters.hasCompletedProfile);
     Router.onBeforeAction(filters.canView, {except: ['atSignIn', 'atSignUp', 'atForgotPwd', 'atResetPwd', 'signOut']});
     Router.onBeforeAction(filters.canViewPendingPosts, {only: ['post_page']});
     Router.onBeforeAction(filters.canViewRejectedPosts, {only: ['post_page']});
-    Router.onBeforeAction(filters.hasCompletedProfile);
     Router.onBeforeAction(filters.isLoggedOut, {only: []});
-    Router.onBeforeAction(filters.canPost, {only: ['posts_pending', 'post_submit']});
     Router.onBeforeAction(filters.canEditPost, {only: ['post_edit']});
     Router.onBeforeAction(filters.canEditComment, {only: ['comment_edit']});
     Router.onBeforeAction(filters.isAdmin, {only: ['posts_pending', 'all-users', 'settings', 'toolbox', 'logs']});
 
     Router.plugin('ensureSignedIn', {only: ['post_submit', 'post_edit', 'comment_edit']});
+
+    Router.onBeforeAction(filters.canPost, {only: ['posts_pending', 'post_submit']});
 
     // After Hooks
 

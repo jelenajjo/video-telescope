@@ -1,4 +1,4 @@
-Comments.views.register("postCommentsBySlug", function (terms) {
+Comments.views.add("postCommentsBySlug", function (terms) {
   var post = Posts.findOne({slug: terms.slug}, {fields: {_id: 1}});
 
   terms.postId = null;

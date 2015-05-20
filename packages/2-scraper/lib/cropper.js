@@ -1,6 +1,6 @@
 /* global Cropper: true */
 
-Posts.registerField({
+Posts.addField({
   fieldName: 'croppedImages',
   fieldSchema: {
     type: [Object],
@@ -12,21 +12,21 @@ Posts.registerField({
   }
 });
 
-Posts.registerField({
+Posts.addField({
   fieldName: 'croppedImages.$.key',
   fieldSchema: {
     type: String
   }
 });
 
-Posts.registerField({
+Posts.addField({
   fieldName: 'croppedImages.$.url',
   fieldSchema: {
     type: String
   }
 });
 
-Settings.registerField({
+Settings.addField({
   fieldName: 'allowedImageSizes',
   fieldSchema: {
     type: String,

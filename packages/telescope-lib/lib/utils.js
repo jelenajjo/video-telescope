@@ -20,6 +20,14 @@ Telescope.utils.camelToDash = function(str) {
 };
 
 /**
+ * Convert an underscore-separated string to dash-separated string
+ * @param {String} str
+ */
+Telescope.utils.underscoreToDash = function(str) {
+  return str.replace('_', '-');
+};
+
+/**
  * Convert a dash separated string to camelCase.
  * @param {String} str
  */
@@ -89,17 +97,6 @@ Telescope.utils.getDateRange = function(pageNumber) {
   // console.log("before: ", dayToDisplay.endOf('day').format("dddd, MMMM Do YYYY, h:mm:ss a"));
   return range;
 };
-
-// Telescope.utils.getPostCategories = function(post){
-//   var postCategories = _.map(post.categories, function(categoryId){
-//     return Categories.findOne(categoryId);
-//   });
-//   // put resulting array through a filter to remove empty values in case
-//   // some of the post's categories weren't found in the database
-//   return _.filter(postCategories, function(e){return e});
-// }
-
-
 
 //////////////////////////
 // URL Helper Functions //

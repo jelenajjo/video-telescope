@@ -15,7 +15,7 @@ Posts.controllers.list = RouteController.extend({
     var showViewsNav = (typeof this.showViewsNav === 'undefined') ? true : this.showViewsNav;
 
     if (showViewsNav) {
-      this.render('post_list_top', {to: 'postListTop'});
+      this.render('posts_list_top', {to: 'postsListTop'});
     }
     this.next();
   },
@@ -43,7 +43,7 @@ Posts.controllers.list = RouteController.extend({
     if (Router.current().route.getName() === 'posts_default') { // return site description on root path
       return Settings.get('description');
     } else {
-      return i18n.t(_.findWhere(Telescope.menus.get("viewsMenu"), {label: this.view}).description);
+      return i18n.t(_.findWhere(Telescope.menuItems.get("viewsMenu"), {label: this.view}).description);
     }
   },
 
@@ -52,7 +52,12 @@ Posts.controllers.list = RouteController.extend({
 
 var getDefaultViewController = function () {
   var defaultView = Settings.get('defaultView', 'top');
-  return Posts.controllers[defaultView];
+  // if view we got from settings is available in Posts.views object, use it
+  if (!!Posts.controllers[defaultView]) {
+    return Posts.controllers[defaultView];
+  } else {
+    return Posts.controllers.top;
+  }
 };
 
 // wrap in startup block to make sure Settings collection is defined

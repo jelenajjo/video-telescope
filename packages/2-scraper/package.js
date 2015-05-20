@@ -14,6 +14,11 @@ Package.onUse(function (api) {
     'edgee:slingshot@0.6.2',
   ], ['client', 'server']);
 
+  api.use([
+    'http',
+    'aldeed:http@0.2.2',
+  ], 'server');
+
   // ---------------------------------- 2. Files to include ----------------------------------
 
   // i18n config (must come first)

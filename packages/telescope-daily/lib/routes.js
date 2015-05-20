@@ -8,7 +8,7 @@ Posts.controllers.daily = Posts.controllers.list.extend({
   template: function() {
     // use a function to make sure the template is evaluated *after* any template overrides
     // TODO: still needed?
-    return 'postsDaily';
+    return 'posts_daily';
   },
 
   data: function () {
@@ -25,6 +25,7 @@ Meteor.startup(function () {
 
   Router.route('/daily/:days?', {
     name: 'postsDaily',
+    template: 'posts_daily',
     controller: Posts.controllers.daily
   });
 

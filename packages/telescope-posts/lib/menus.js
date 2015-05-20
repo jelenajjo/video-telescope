@@ -1,11 +1,5 @@
-////////////////
-// Navigation //
-////////////////
-
-
-
 // array containing items in the views menu
-Telescope.menus.register("viewsMenu", [
+Telescope.menuItems.add("viewsMenu", [
   {
     route: 'posts_top',
     label: 'top',
@@ -33,18 +27,4 @@ Telescope.menus.register("viewsMenu", [
     description: 'future_scheduled_posts',
     adminOnly: true
   },
-]);
-
-// array containing items in the admin menu
-Telescope.menus.register("adminMenu", [
-  {
-    route: 'settings',
-    label: 'settings',
-    description: 'telescope_settings_panel'
-  },
-  {
-    route: 'usersDashboard',
-    label: 'users',
-    description: 'users_dashboard'
-  }
 ]);

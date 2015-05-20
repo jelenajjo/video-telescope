@@ -1,4 +1,4 @@
-<template name="userInvites">
+<template name="user_invites">
   <div class="grid-small grid-block dialog admin">
     <h3>Invites</h3>
     
@@ -31,7 +31,7 @@
           {{#each invites}}
           <tr>
             <td>{{invitedUserEmail}}</td>
-            <td>{{#if accepted}}<i class="icon-check"></i>{{/if}}</td>
+            <td>{{#if accepted}}{{{icon "voted"}}}{{/if}}</td>
           </tr>
           {{/each}}
       </tbody>

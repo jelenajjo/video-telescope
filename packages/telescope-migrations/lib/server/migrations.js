@@ -524,14 +524,17 @@ var migrationsList = {
 
       var telescopeUserData = {};
 
-      // look for user data on root of user object and in user.votes
+      // loop over user data schema
       _.each(Telescope.schemas.userData._schema, function (property, key) {
-        if (!!user[key]) {
+
+        if (!!user[key]) { // look for property on root of user object
           telescopeUserData[key] = user[key];
-        }
-        if (!!user.votes[key]) {
+        } else if (user.votes && !!user.votes[key]) { // look for it in user.votes object
           telescopeUserData[key] = user.votes[key];
+        } else if (user.profile && user.profile[key]) { // look for it in user.profile object
+          telescopeUserData[key] = user.profile[key];
         }
+        
       });
 
       // console.log(telescopeUserData);
@@ -566,39 +569,53 @@ var migrationsList = {
     });
     return i;
   },
-  addTopLevelCommentIdToComments: function() {
-    var i = 0;
-    // find all root comments and set topLevelCommentId on their root children
-    Comments.find({parentCommentId: {$exists : false}}).forEach(function (comment) {
-      // topLevelCommentId is the root comment._id
-      var topLevelCommentId = comment._id;
-      console.log("Root Comment found: " + topLevelCommentId);
-      // find childComments that have this root comment as parentCommentId
-      Comments.find({parentCommentId: comment._id}).forEach(function (childComment) {
-        i++;
-        updateParentAndChild(topLevelCommentId, childComment._id);
-      });
-    });
-    function updateParentAndChild(topLevelCommentId, parentId) {
-      i++;
-      console.log("Parent Comment: " + parentId, " top level comment " + topLevelCommentId);
-      Comments.update(parentId, {$set: {'topLevelCommentId': topLevelCommentId}}, {multi: false, validate: false});
-      var childComments = Comments.find({topLevelCommentId: {$exists : false}, parentCommentId: parentId});
-      console.log('> Found '+childComments.count()+' child comments.\n');
-      childComments.forEach(function(childComment){
-        i++;
-        // find all nested childComments and set topLevelCommentId
-        console.log("Child Comment: " + childComment._id, " top level comment " + topLevelCommentId);
-        // set nested childComment to use parent's topLevelCommentId
-        Comments.update(childComment._id, {$set: {'topLevelCommentId': topLevelCommentId}}, {multi: false, validate: false});
-        updateParentAndChild(topLevelCommentId, childComment._id, true);
-      });
-    }
-    console.log("---------------------");
-    return i;
-  },
+  // addTopLevelCommentIdToComments: function() {
+  //   var i = 0;
+
+  //   // find all root comments and set topLevelCommentId on their root children
+  //   Comments.find({parentCommentId: {$exists : false}}).forEach(function (comment) {
+      
+  //     // topLevelCommentId is the root comment._id
+  //     var topLevelCommentId = comment._id;
+  //     console.log("Root Comment found: " + topLevelCommentId);
+      
+  //     // find childComments that have this root comment as parentCommentId
+  //     Comments.find({parentCommentId: comment._id}).forEach(function (childComment) {
+  //       i++;
+  //       updateParentAndChild(topLevelCommentId, childComment._id);
+  //     });
+    
+  //   });
+    
+  //   function updateParentAndChild(topLevelCommentId, parentId) {
+    
+  //     i++;
+  //     console.log("Parent Comment: " + parentId, " top level comment " + topLevelCommentId);
+     
+  //     Comments.update(parentId, {$set: {'topLevelCommentId': topLevelCommentId}}, {multi: false, validate: false});
+    
+  //     var childComments = Comments.find({topLevelCommentId: {$exists : false}, parentCommentId: parentId});
+    
+  //     console.log('> Found '+childComments.count()+' child comments.\n');
+    
+  //     childComments.forEach(function(childComment){
+  //       i++;
+    
+  //       // find all nested childComments and set topLevelCommentId
+  //       console.log("Child Comment: " + childComment._id, " top level comment " + topLevelCommentId);
+    
+  //       // set nested childComment to use parent's topLevelCommentId
+  //       Comments.update(childComment._id, {$set: {'topLevelCommentId': topLevelCommentId}}, {multi: false, validate: false});
+  //       updateParentAndChild(topLevelCommentId, childComment._id, true);
+  //     });
+    
+  //   }
+  //   console.log("---------------------");
+  //   return i;
+  // },
   migrateDisplayName: function () {
     var i = 0;
+    var displayName;
     var allUsers = Meteor.users.find({"telescope.displayName": {$exists: false}});
     console.log('> Found '+allUsers.count()+' users.\n');
 
@@ -606,9 +623,18 @@ var migrationsList = {
       i++;
 
       console.log('> Updating user '+user._id+' (' + user.username + ')');
-      var displayName = user.profile.name || user.profile.username;
+      if (!!user.profile) {
+        displayName = user.profile.name || user.profile.username;
+      } else {
+        displayName = user.username;
+      }
+
       console.log('name: ', displayName);
-      Meteor.users.update(user._id, {$set: {"telescope.displayName": displayName}});
+      if (!!displayName) {
+        Meteor.users.update(user._id, {$set: {"telescope.displayName": displayName}});
+      } else {
+        "displayName not found :("
+      }
     });
     return i;
   }

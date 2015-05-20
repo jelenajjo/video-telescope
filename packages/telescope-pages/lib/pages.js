@@ -31,13 +31,13 @@ Pages.before.insert(function (userId, doc) {
     doc.slug = Telescope.utils.slugify(doc.title);
 });
 
-Telescope.modules.register("primaryNav", {
-  template: "pagesMenu",
+Telescope.modules.add("primaryNav", {
+  template: "pages_menu",
   order: 5
 });
 
-Telescope.modules.register("mobileNav", {
-  template: 'pagesMenu',
+Telescope.modules.add("mobileNav", {
+  template: 'pages_menu',
   order: 5
 });
 

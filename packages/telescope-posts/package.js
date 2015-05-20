@@ -1,7 +1,7 @@
 Package.describe({
   name: "telescope:posts",
   summary: "Telescope posts package",
-  version: "0.1.2",
+  version: "0.20.2",
   git: "https://github.com/TelescopeJS/telescope-posts.git"
 });
 
@@ -10,22 +10,24 @@ Package.onUse(function (api) {
   api.versionsFrom(['METEOR@1.0']);
 
   api.use([
-    'telescope:lib@0.3.0',
-    'telescope:i18n@0.1.0',
-    'telescope:settings@0.1.0',
-    'telescope:users@0.1.0',
-    'telescope:comments@0.1.0'
+    'telescope:lib@0.20.2',
+    'telescope:i18n@0.20.2',
+    'telescope:settings@0.20.2',
+    'telescope:users@0.20.2',
+    'telescope:comments@0.20.2'
   ]);
 
   api.addFiles([
-    'lib/posts.js',
+    'lib/namespace.js',
     'lib/config.js',
+    'lib/posts.js',
     'lib/parameters.js',
     'lib/views.js',
     'lib/helpers.js',
     'lib/modules.js',
     'lib/callbacks.js',
     'lib/methods.js',
+    'lib/menus.js',
     'lib/routes.js'
   ], ['client', 'server']);
 
@@ -58,13 +60,13 @@ Package.onUse(function (api) {
     'lib/client/templates/post_edit.js',
     'lib/client/templates/post_item.html',
     'lib/client/templates/post_item.js',
-    'lib/client/templates/post_list_top.html',
+    'lib/client/templates/posts_list_top.html',
     'lib/client/templates/post_page.html',
     'lib/client/templates/post_page.js',
     'lib/client/templates/post_submit.html',
     'lib/client/templates/post_submit.js',
-    'lib/client/templates/post_views_nav.html',
-    'lib/client/templates/post_view_nav.js',
+    'lib/client/templates/posts_views_nav.html',
+    'lib/client/templates/posts_view_nav.js',
     'lib/client/templates/posts_list/posts_list.html',
     'lib/client/templates/posts_list/posts_list.js',
     'lib/client/templates/posts_list/posts_list_compact.html',

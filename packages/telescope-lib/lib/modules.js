@@ -13,12 +13,12 @@ Telescope.modules = {};
  * @param {number} module.order - The order of the template in the zone
  *
  * @example
- * Telescope.modules.register("hero", {
+ * Telescope.modules.add("hero", {
  *   template: "newsletterBanner",
  *   order: 10
  * });
  */
-Telescope.modules.register = function (zone, module) {
+Telescope.modules.add = function (zone, module) {
 
   // if module zone array doesn't exist yet, initialize it
   if (typeof Telescope.modules[zone] === "undefined") {
@@ -48,6 +48,14 @@ Telescope.modules.remove = function (zone, template) {
   Telescope.modules[zone] = _.reject(Telescope.modules[zone], function (module) {
     return module.template === template;
   });
+};
+
+/**
+ * Removes all modules from a zone
+ * @param {string} zone - The name of the zone
+ */
+Telescope.modules.removeAll = function (zone) {
+  Telescope.modules[zone] = [];
 };
 
 /**

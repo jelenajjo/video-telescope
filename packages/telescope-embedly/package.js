@@ -1,7 +1,7 @@
 Package.describe({
   name: "telescope:embedly",
   summary: "Telescope Embedly module package",
-  version: "0.3.1",
+  version: "0.20.2",
   git: 'https://github.com/TelescopeJS/telescope-embedly.git'
 });
 
@@ -9,11 +9,7 @@ Package.onUse( function(api) {
 
   api.versionsFrom("METEOR@1.0");
 
-  api.use(['telescope:core@0.1.0']);
-
-  api.use([
-    'telescope:messages@0.1.0'
-  ], 'client');
+  api.use(['telescope:core@0.20.2']);
 
   api.addFiles([
     'package-tap.i18n',

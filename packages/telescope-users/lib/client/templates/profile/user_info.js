@@ -18,12 +18,41 @@ Template.user_info.helpers({
   },
   getGitHubName: function () {
     return Users.getGitHubName(this);
+  },
+  publicProfileFields: function () {
+    var user = this;
+    var schema = Users.simpleSchema();
+    var publicData = _.compact(_.map(schema.getPublicFields(), function (fieldName) {
+      if (Telescope.getNestedProperty(user, fieldName)) {
+        var field = schema._schema[fieldName];
+        var item = {
+          label: i18n.t(fieldName.replace("telescope.", "")),
+          value: Telescope.getNestedProperty(user, fieldName)
+        };
+        if (!!field.template) {
+          item.template = field.template;
+        }
+        return item;
+      }
+    }));
+    return publicData;
+  },
+  isUsingPassword: function  () {
+    return !!this.services.password
   }
 });
 
 Template.user_info.events({
   'click .invite-link': function(e, instance){
-    Meteor.call('inviteUser', instance.data.user._id);
-    Messages.flash('Thanks, user has been invited.', "success");
+    var user = this;
+    Meteor.call('inviteUser', {userId: user._id}, function(error, success){
+      if (error) {
+        Messages.flash(error, "error");
+        Messages.clearSeen();
+      } else {
+        Messages.flash('Thanks, user has been invited.', "success");
+        Messages.clearSeen();
+      }
+    });
   }
 });

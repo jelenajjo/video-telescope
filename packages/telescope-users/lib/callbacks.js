@@ -27,11 +27,17 @@ function setupUser (user, options) {
     user.telescope.emailHash = Gravatar.hash(options.email);
   }
 
-  // set displayName on telescope
-  user.telescope.displayName = user.username;
+  // look in a few places for the displayName
+  if (user.profile.username) {
+    user.telescope.displayName = user.profile.username;
+  } else if (user.profile.name) {
+    user.telescope.displayName = user.profile.name;
+  } else {
+    user.telescope.displayName = user.username;
+  }
 
-  // create slug from username
-  user.telescope.slug = Telescope.utils.slugify(user.username);
+  // create slug from display name
+  user.telescope.slug = Telescope.utils.slugify(user.telescope.displayName);
 
   // if this is not a dummy account, and is the first user ever, make them an admin
   user.isAdmin = (!user.profile.isDummy && Meteor.users.find({'profile.isDummy': {$ne: true}}).count() === 0) ? true : false;
@@ -40,14 +46,10 @@ function setupUser (user, options) {
 
   return user;
 }
-Telescope.callbacks.register("onCreateUser", setupUser);
+Telescope.callbacks.add("onCreateUser", setupUser);
 
 
-/**
- * Check if the user has completed their profile with an email and username.
- * @param {Object} user
- */
 function hasCompletedProfile (user) {
-  return !!Users.getEmail(user) && !!Users.getUserName(user);
+  return Users.hasCompletedProfile(user);
 }
-Telescope.callbacks.register("profileCompletedChecks", hasCompletedProfile);
+Telescope.callbacks.add("profileCompletedChecks", hasCompletedProfile);

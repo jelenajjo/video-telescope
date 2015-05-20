@@ -1,7 +1,7 @@
 Package.describe({
   name: "telescope:getting-started",
   summary: "Getting started posts",
-  version: '0.1.0',
+  version: '0.20.2',
   git: "https://github.com/TelescopeJS/telescope-getting-started.git"
 });
 
@@ -17,7 +17,7 @@ Package.onUse(function (api) {
 
   // automatic (let the package specify where it's needed)
 
-  api.use(['telescope:core@0.1.0']);
+  api.use(['telescope:core@0.20.2']);
 
   // client
 
@@ -71,11 +71,5 @@ Package.onUse(function (api) {
   api.addFiles([
     'i18n/en.i18n.json',
   ], ['client', 'server']);
-
-  // -------------------------------- 3. Variables to export --------------------------------
-
-  api.export([
-    'deleteDummyContent'
-  ]);
 
 });

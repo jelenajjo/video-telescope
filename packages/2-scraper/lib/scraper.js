@@ -1,4 +1,4 @@
-Posts.registerField({
+Posts.addField({
   fieldName: 'videoUrl',
   fieldSchema: {
     type: String,
@@ -11,7 +11,7 @@ Posts.registerField({
   }
 });
 
-Posts.registerField({
+Posts.addField({
   fieldName: 'thumbnailUrl',
   fieldSchema: {
     type: String,
@@ -24,7 +24,7 @@ Posts.registerField({
   }
 });
 
-Posts.registerField({
+Posts.addField({
   fieldName: 'originUrl',
   fieldSchema: {
     type: String,
@@ -37,7 +37,7 @@ Posts.registerField({
   }
 });
 
-Posts.registerField({
+Posts.addField({
   fieldName: 'videoLocation',
   fieldSchema: {
     type: String,
@@ -48,7 +48,7 @@ Posts.registerField({
   }
 });
 
-Posts.registerField({
+Posts.addField({
   fieldName: 'videoUrlUpdatedAt',
   fieldSchema: {
     type: Date,
@@ -59,7 +59,7 @@ Posts.registerField({
   }
 });
 
-Posts.registerField({
+Posts.addField({
   fieldName: 'videoPlayLocation',
   allowed: ['s3', 'remote'],
   fieldSchema: {
@@ -72,13 +72,13 @@ Posts.registerField({
   }
 });
 
-Telescope.modules.register("postThumbnail", {
+Telescope.modules.add("postThumbnail", {
   template: 'postThumbnail',
   order: 15
 });
 
 // add callback that adds "has-thumbnail" or "no-thumbnail" CSS classes
-Telescope.callbacks.register("postClass", function (post, postClass){
+Telescope.callbacks.add("postClass", function (post, postClass){
   var thumbnailClass = !!post.thumbnailUrl ? "has-thumbnail" : "no-thumbnail";
   return postClass + " " + thumbnailClass;
 });

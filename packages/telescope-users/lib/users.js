@@ -45,6 +45,7 @@ Telescope.schemas.userData = new SimpleSchema({
   displayName: {
     type: String,
     optional: true,
+    public: true,
     editableBy: ["member", "admin"]
   },
   /**
@@ -82,28 +83,12 @@ Telescope.schemas.userData = new SimpleSchema({
   */
   htmlBio: {
     type: String,
-    optional: true
-  },
-  /**
-    A count of the user's remaining invites
-  */
-  inviteCount: {
-    type: Number,
-    optional: true
-  },
-  /**
-    A count of how many users have been invited by the user
-  */
-  invitedCount: {
-    type: Number,
-    optional: true
-  },
-  /**
-    Whether the user is invited or not
-  */
-  isInvited: {
-    type: Boolean,
-    optional: true
+    public: true,
+    optional: true,
+    autoform: {
+      omit: true
+    },
+    template: "user_profile_bio"
   },
   /**
     The user's karma
@@ -145,7 +130,9 @@ Telescope.schemas.userData = new SimpleSchema({
   twitterUsername: {
     type: String,
     optional: true,
-    editableBy: ["member", "admin"]
+    public: true,
+    editableBy: ["member", "admin"],
+    template: "user_profile_twitter"
   },
   /**
     An array containing comments upvotes
@@ -167,6 +154,7 @@ Telescope.schemas.userData = new SimpleSchema({
   website: {
     type: String,
     regEx: SimpleSchema.RegEx.Url,
+    public: true,
     optional: true,
     editableBy: ["member", "admin"]
   }
@@ -205,7 +193,11 @@ Users.schema = new SimpleSchema({
   },
   isAdmin: {
     type: Boolean,
-    optional: true
+    optional: true,
+    editableBy: ["admin"],
+    autoform: {
+      omit: true
+    }
   },
   profile: {
     type: Object,
@@ -237,4 +229,50 @@ Users.attachSchema(Users.schema);
 Users.allow({
   update: _.partial(Telescope.allowCheck, Meteor.users),
   remove: _.partial(Telescope.allowCheck, Meteor.users)
+});
+
+
+//////////////////////////////////////////////////////
+// Collection Hooks                                 //
+// https://atmospherejs.com/matb33/collection-hooks //
+//////////////////////////////////////////////////////
+
+/**
+ * Generate HTML body from Markdown on user bio insert
+ */
+Users.after.insert(function (userId, user) {
+
+  // run create user async callbacks
+  Telescope.callbacks.runAsync("onCreateUserAsync", user);
+
+  // check if all required fields have been filled in. If so, run profile completion callbacks
+  if (Users.hasCompletedProfile(user)) {
+    Telescope.callbacks.runAsync("profileCompletedAsync", user);
+  }
+  
+});
+
+/**
+ * Generate HTML body from Markdown when user bio is updated
+ */
+Users.before.update(function (userId, doc, fieldNames, modifier) {
+  // if bio is being modified, update htmlBio too
+  if (Meteor.isServer && modifier.$set && modifier.$set["telescope.bio"]) {
+    modifier.$set["telescope.htmlBio"] = Telescope.utils.sanitize(marked(modifier.$set["telescope.bio"]));
+  }
+});
+
+/**
+ * If user.telescope.email has changed, also change user.emails
+ */
+Users.before.update(function (userId, doc, fieldNames, modifier) {
+  // if bio is being modified, update htmlBio too
+  if (Meteor.isServer && modifier.$set && modifier.$set["telescope.email"]) {
+    var newEmail = modifier.$set["telescope.email"];
+    var userWithSameEmail = Users.findByEmail(newEmail);
+    if (userWithSameEmail && userWithSameEmail._id !== doc._id) {
+      throw new Meteor.Error(i18n.t("this_email_is_already_taken") + " (" + newEmail + ")");
+    }
+    // modifier.$set["telescope.htmlBio"] = Telescope.utils.sanitize(marked(modifier.$set["telescope.bio"]));
+  }
 });

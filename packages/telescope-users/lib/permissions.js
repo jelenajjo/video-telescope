@@ -56,10 +56,10 @@ Users.can.post = function (user, returnError) {
   } else if (Users.is.admin(user)) {
     return true;
   } else if (Settings.get('requirePostInvite')) {
-    if (user.isInvited) {
+    if (user.telescope.isInvited) {
       return true;
     } else {
-      return returnError ? "no_invite" : false;
+      return false;
     }
   } else {
     return true;

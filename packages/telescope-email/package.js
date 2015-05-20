@@ -1,7 +1,7 @@
 Package.describe({
   name: "telescope:email",
   summary: "Telescope email package",
-  version: "0.3.0",
+  version: "0.20.2",
   git: "https://github.com/TelescopeJS/telescope-email.git"
 });
 
@@ -14,7 +14,7 @@ Package.onUse(function (api) {
   api.versionsFrom(['METEOR@1.0']);
 
   api.use([
-    'telescope:core@0.1.0',
+    'telescope:core@0.20.2',
     'sacha:juice@0.1.4',
     'cmather:handlebars-server@0.2.0'
   ]);
@@ -48,10 +48,4 @@ Package.onUse(function (api) {
     "i18n/zh-CN.i18n.json",
   ], ["client", "server"]);
 
-  api.export([
-    'buildEmailTemplate',
-    'sendEmail',
-    'buildAndSendEmail',
-    'getEmailTemplate'
-  ]);
 });

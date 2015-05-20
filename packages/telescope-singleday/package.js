@@ -1,7 +1,8 @@
 Package.describe({
   name: 'telescope:singleday',
   summary: 'Telescope Single Day package',
-  version: '0.1.1'
+  version: '0.20.2',
+  git: "https://github.com/TelescopeJS/Telescope.git"
 });
 
 Npm.depends({
@@ -14,7 +15,7 @@ Package.onUse(function (api) {
 
   // --------------------------- 1. Meteor packages dependencies ---------------------------
 
-  api.use(['telescope:core@0.1.0']);
+  api.use(['telescope:core@0.20.2']);
 
   // ---------------------------------- 2. Files to include ----------------------------------
 
@@ -50,6 +51,7 @@ Package.onUse(function (api) {
   api.addFiles([
     'i18n/bg.i18n.json',
     'i18n/de.i18n.json',
+    'i18n/nl.i18n.json',
     'i18n/en.i18n.json',
     'i18n/es.i18n.json',
     'i18n/fr.i18n.json',
@@ -57,12 +59,5 @@ Package.onUse(function (api) {
     'i18n/tr.i18n.json',
     'i18n/zh-CN.i18n.json'
   ], ['client', 'server']);
-
-  // -------------------------------- 3. Variables to export --------------------------------
-
-  api.export([
-    'getDigestURL',
-    'PostsSingledayController'
-  ]);
 
 });

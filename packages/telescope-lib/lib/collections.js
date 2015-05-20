@@ -4,15 +4,20 @@
  */
 
 /**
- * Add an additional field to a schema.
- * @param {Object} field
+ * Add an additional field (or an array of fields) to a schema.
+ * @param {Object|Object[]} field
  */
-Mongo.Collection.prototype.registerField = function (field) {
+Mongo.Collection.prototype.addField = function (fieldOrFieldArray) {
 
   var collection = this;
   var fieldSchema = {};
 
-  fieldSchema[field.fieldName] = field.fieldSchema;
+  var fieldArray = Array.isArray(fieldOrFieldArray) ? fieldOrFieldArray : [fieldOrFieldArray];
+
+  // loop over fields and add them to schema
+  fieldArray.forEach(function (field) {
+    fieldSchema[field.fieldName] = field.fieldSchema;
+  });
 
   // add field schema to collection schema
   collection.attachSchema(fieldSchema);
@@ -76,9 +81,21 @@ Telescope.schemas = {};
  */
 SimpleSchema.prototype.getEditableFields = function (user) {
   var schema = this._schema;
-  var fields = _.filter(_.keys(schema), function (fieldName) {
+  var fields = _.sortBy(_.filter(_.keys(schema), function (fieldName) {
     var field = schema[fieldName];
     return Users.can.editField(user, field);
+  }), function (fieldName) {
+    var field = schema[fieldName];
+    return field.autoform && field.autoform.order;
+  });
+  return fields;
+};
+
+SimpleSchema.prototype.getPublicFields = function (user) {
+  var schema = this._schema;
+  var fields = _.filter(_.keys(schema), function (fieldName) {
+    var field = schema[fieldName];
+    return !!field.public;
   });
   return fields;
 };

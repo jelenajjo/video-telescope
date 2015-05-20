@@ -19,12 +19,12 @@ var generateSlug = function(title, postId) {
   return slug;
 };
 
-Telescope.callbacks.register('postSubmit', function (post) {
+Telescope.callbacks.add('postSubmit', function (post) {
   post.slug = generateSlug(post.title);
   return post;
 });
 
-Telescope.callbacks.register('postEdit', function(modifier, post) {
+Telescope.callbacks.add('postEdit', function(modifier, post) {
   var newTitle = modifier.$set && modifier.$set.title;
 
   if (newTitle !== post.title) {

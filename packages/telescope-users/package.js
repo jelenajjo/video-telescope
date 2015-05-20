@@ -1,7 +1,8 @@
 Package.describe({
   name: 'telescope:users',
   summary: 'Telescope permissions.',
-  version: '0.1.0'
+  version: '0.20.2',
+  git: "https://github.com/TelescopeJS/Telescope.git"
 });
 
 Package.onUse(function (api) {
@@ -9,9 +10,9 @@ Package.onUse(function (api) {
   api.versionsFrom(['METEOR@1.0']);
 
   api.use([
-    'telescope:lib@0.3.1',
-    'telescope:settings@0.1.0',
-    'telescope:i18n@0.1.0'
+    'telescope:lib@0.20.2',
+    'telescope:settings@0.20.2',
+    'telescope:i18n@0.20.2'
   ]);
 
   api.addFiles([
@@ -33,6 +34,8 @@ Package.onUse(function (api) {
   api.addFiles([
     'lib/client/templates/account/user_account.html',
     'lib/client/templates/account/user_account.js',
+    'lib/client/templates/account/user_password.html',
+    'lib/client/templates/account/user_password.js',
     'lib/client/templates/dashboard/users-dashboard.html',
     'lib/client/templates/dashboard/users-dashboard.js',
     'lib/client/templates/dashboard/users_list_actions.html',
@@ -41,6 +44,7 @@ Package.onUse(function (api) {
     'lib/client/templates/dashboard/users_list_created_at.html',
     'lib/client/templates/dashboard/users_list_email.html',
     'lib/client/templates/dashboard/users_list_username.html',
+    'lib/client/templates/dashboard/users_list_display_name.html',
     'lib/client/templates/profile/user_comments.html',
     'lib/client/templates/profile/user_comments.js',
     'lib/client/templates/profile/user_downvoted_posts.html',
@@ -51,6 +55,8 @@ Package.onUse(function (api) {
     'lib/client/templates/profile/user_posts.js',
     'lib/client/templates/profile/user_upvoted_posts.html',
     'lib/client/templates/profile/user_upvoted_posts.js',
+    'lib/client/templates/profile/user_profile_bio.html',
+    'lib/client/templates/profile/user_profile_twitter.html',
     'lib/client/templates/sign_out.html',
     'lib/client/templates/user_edit.html',
     'lib/client/templates/user_complete.html',
