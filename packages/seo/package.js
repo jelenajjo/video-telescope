@@ -11,6 +11,7 @@ Package.onUse(function(api) {
     'underscore',
     'iron:router',
     'telescope:core',
+    'telescope:tags',
   ], 'server');
 
   api.addFiles([

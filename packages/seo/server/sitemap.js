@@ -3,7 +3,7 @@
  * http://www.sitemaps.org/index.html
  */
 
-sitemaps = {
+var sitemaps = {
   list: {}
 };
 
@@ -17,6 +17,11 @@ if (typeof Number.lpad === "undefined") {
     return str;
   };
 }
+
+
+var getPostCategories = function (post) {
+  return !!post.categories ? Categories.find({_id: {$in: post.categories}}).fetch() : [];
+};
 
 var urlStart = Meteor.absoluteUrl();
 function prepareUrl(url) {
