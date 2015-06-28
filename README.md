@@ -7,30 +7,18 @@ Telescope is an open-source, real-time social news site built with [Meteor](http
 
 Note that Telescope is distributed under the [MIT License](http://opensource.org/licenses/MIT)
 
-### We Need Your Help!
+### Getting Started
 
-A lot of work has already gone into Telescope, but it needs that final push to reach its full potential.
+Note that while simply cloning this repository will work, it is recommended you clone the [sample project](https://github.com/TelescopeJS/sample-project/) repository instead for a simpler workflow.
 
-So if you'd like to be part of the project, please check out the [roadmap](https://trello.com/b/oLMMqjVL/telescope-roadmap) and [issues](https://github.com/TelescopeJS/Telescope/issues) to see if there's anything you can help with.
+Please refer to [the documentation](http://telescope.readme.io/v0.20/docs/installing-telescope) for more instructions on installing Telescope.
 
 ### Learn More
 
-- [Telescope Homepage](http://telesc.pe)
-- [Telescope Demo](http://demo2.telescopeapp.org)
-- [Telescope Documentation](http://telesc.pe/docs)
-- [Telescope Roadmap](https://trello.com/b/oLMMqjVL/telescope-roadmap)
-- [Telescope Meta](http://meta.telesc.pe/) – Discussions about Telescope
-
-### Developing on Nitrous.IO
-
-Start hacking on this app on
-[Nitrous.IO](https://www.nitrous.io/?utm_source=github.com&utm_campaign=Telescope&utm_medium=hackonnitrous)
-in seconds:
-
-[![Hack TelescopeJS/Telescope on Nitrous.IO](https://d3o0mnbgv6k92a.cloudfront.net/assets/hack-l-v1-3cc067e71372f6045e1949af9d96095b.png)](https://www.nitrous.io/hack_button?source=embed&runtime=nodejs&repo=TelescopeJS%2FTelescope&file_to_open=README.nitrous.md)
-
-### Heroku Button
-
-Deploy on Heroku:
-
-[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+- [Homepage](http://telescopeapp.org)
+- [Demo](http://demo2.telescopeapp.org)
+- [Sample Project](https://github.com/TelescopeJS/sample-project/)
+- [Documentation](http://telescope.readme.io)
+- [Roadmap](https://trello.com/b/oLMMqjVL/telescope-roadmap)
+- [Slack](http://slack.telescopeapp.org/)
+- [Meta](http://meta.telescopeapp.org/) – Discussions about Telescope

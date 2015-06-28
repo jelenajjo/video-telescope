@@ -1,4 +1,36 @@
-* Added `ctrl/cmd+enter` shortcut to submit comments (thanks @delgermurun!).
+## v0.21 “SlugScope”
+
+* Added URL slugs for posts (i.e. `/posts/xyz/my-post-slug`).
+* i18n files clean-up.
+* Added post downvote setting.
+* Refactored notifications code.
+* Added `kadira-debug` package.
+* Fixed avatar bug.
+* Fixed screen refresh bug on post page.
+
+## v0.20.6 “AutoScope”
+
+* Added Extra CSS field (thanks @johnthepink!).
+* Fixed security issue with Settings (thanks @jshimko!).
+* Added automatic template replacement.
+
+## v0.20.5 “MinorScope”
+
+Just a couple minor bug fixes.
+
+* Changed how email template customization works (see [documentation](http://docs.telescopeapp.org/v0.20/docs/custom-templates#email-templates)).
+* Ensure email uniqueness and keep it in sync.
+* Improve profile completion screen validation & errors.
+* Generate public user properties list from schema.
+* Fixed video lightbox issue.
+* Updated Getting Started content.
+* Enforcing better URL formatting for Site URL setting.
+* Fixed notification settings.
+* Reworked user settings.
+
+## v0.20.4 “RefactorScope”
+
+See [blog](http://telescopeapp.org/blog/telescope-v020-refactorscope/) for more details. 
 
 ## v0.15.1 “PageScope”
 

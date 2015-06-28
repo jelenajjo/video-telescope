@@ -43,7 +43,7 @@ AutoForm.hooks({
       // $(e.target).removeClass('disabled');
       if (error.error === 603) {
         var dupePostId = error.reason.split('|')[1];
-        Router.go('post_page', {_id: dupePostId});
+        Router.go('post_page', {slug: '_', _id: dupePostId});
       }
     }
 

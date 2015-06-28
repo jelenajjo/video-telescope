@@ -62,12 +62,12 @@ getPostCategories = function (post) {
   return !!post.categories ? Categories.find({_id: {$in: post.categories}}).fetch() : [];
 };
 
-getCategoryUrl = function(slug){
+Categories.getUrl = function(slug){
   return Telescope.utils.getSiteUrl()+'c/'+slug;
 };
 
 // add callback that adds categories CSS classes
-function addCategoryClass (post, postClass){
+function addCategoryClass (post, postClass) {
   var classArray = _.map(getPostCategories(post), function (category){return "category-"+category.slug;});
   return postClass + " " + classArray.join(' ');
 }
