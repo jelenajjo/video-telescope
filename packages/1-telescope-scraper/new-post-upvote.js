@@ -1,4 +1,4 @@
-Template.post_upvote.helpers({
+Template.newPostUpvote.helpers({
   downvoted: function() {
     var user = Meteor.user();
     if(!user) return false;
@@ -6,7 +6,7 @@ Template.post_upvote.helpers({
   }
 });
 
-Template.post_upvote.events({
+Template.newPostUpvote.events({
   'click .downvote-link': function(e) {
     var post = this;
     e.preventDefault();
