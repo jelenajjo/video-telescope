@@ -1,6 +1,6 @@
 <template name="newPostTitle">
   {{#if thumbnailUrl}}
-    <h4 class="post-title">{{title}}</h4>
+    <h4 class="post-title"><a href="{{postLink}}">{{title}}</a></h4>
   {{else}}
     <h4 class="post-title"><a href="{{postLink}}">{{title}}</a></h4>
   {{/if}}

@@ -4,11 +4,11 @@ Template.notifications_menu.helpers({
     var notifications=Herald.collection.find({userId: Meteor.userId(), read: false}, {sort: {timestamp: -1}}).fetch();
 
     if(notifications.length === 0){
-      notificationsCount = __('no_notifications');
+      notificationsCount = __('0');
     }else if(notifications.length === 1){
-      notificationsCount = __('1_notification');
+      notificationsCount = __('1');
     }else{
-      notificationsCount = notifications.length+' '+ __('notifications');
+      notificationsCount = notifications.length+' '+ __('');
     }
 
     return notificationsCount;

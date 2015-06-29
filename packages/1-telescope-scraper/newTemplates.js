@@ -8,3 +8,4 @@ Template['newComment-item'].replaces('comment_item');
 Template.newSubmitButton.replaces('submit_button');
 Template.newUserMenu.replaces('user_menu');
 Template.newPostTitle.replaces('post_title');
+Template.newPostThumbnail.replaces('postThumbnail');

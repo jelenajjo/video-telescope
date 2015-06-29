@@ -10,20 +10,9 @@ html, body{
     background:#232324;
 }
 
-
-
 .side-nav .inner-wrapper{
     margin-left: 0;
 }
-
-#submitCommentForm fieldset .form-group .control-label{
-    display: none;
-}
-
-form .form-group .controls{
-    margin-left:15px!important;
-}
-
 
 /* HEADER */
 
@@ -82,7 +71,7 @@ form .form-group .controls{
 }
 
 .searchBox{
-    width: 30%;
+    width: 60%;
     margin-top:25px;
 }
 
@@ -496,15 +485,15 @@ margin-top: 0px;
     display:none;
 }
 
-.videoEmbed .post-body{
-    width:65%;
+.post-domain{
+    display:none;
 }
 
 .post,.posts-grid .post:after {
     border-bottom:0;
 }
 
-.post-title a{
+.post-title{
     color:#A3A3A3;
 }
 

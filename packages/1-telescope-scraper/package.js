@@ -35,6 +35,8 @@ Package.onUse(function (api) {
   api.addFiles('post-bottom.js' , 'client');
   api.addFiles('new-post-upvote.js' , 'client');
   api.addFiles('new-nav.js' , 'client');
-
+  api.addFiles('new-post-thumbnail.html', 'client');
+    
+    
   api.addFiles('newTemplates.js', 'client');
 });
