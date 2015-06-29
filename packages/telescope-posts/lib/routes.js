@@ -67,7 +67,7 @@ Meteor.startup(function () {
       var title = Settings.get('title', 'Telescope');
       var tagline = Settings.get('tagline');
       var fullTitle = !!tagline ? title + ' – ' + tagline : title ;
-      return fullTitle;
+      return '';//fullTitle;
     }
   });
 
