@@ -28,7 +28,7 @@ var PostSlugPageController = RouteController.extend({
 
   getTitle: function () {
     if (!!this.post())
-      return this.post().title;
+      return this.post().title.substring(0, 55);
   },
 
   onBeforeAction: function() {
@@ -44,8 +44,10 @@ var PostSlugPageController = RouteController.extend({
   },
 
   onRun: function() {
-    var sessionId = Meteor.default_connection && Meteor.default_connection._lastSessionId ? Meteor.default_connection._lastSessionId : null;
-    Meteor.call('increasePostViews', this.post()._id, sessionId);
+    if (this.post()) {
+      var sessionId = Meteor.default_connection && Meteor.default_connection._lastSessionId ? Meteor.default_connection._lastSessionId : null;
+      Meteor.call('increasePostViews', this.post()._id, sessionId);
+    }
     this.next();
   },
 
@@ -70,6 +72,6 @@ Posts.helpers({getLink: function (isAbsolute) {return Posts.getLink(this, isAbso
 Posts.getPageUrl = function(post, isAbsolute){
   isAbsolute = typeof isAbsolute === "undefined" ? false : isAbsolute; // default to false
   var prefix = isAbsolute ? Telescope.utils.getSiteUrl().slice(0,-1) : "";
-  return prefix + !!post.slug ? "/p/"+post.slug : "/posts/"+post._id;
+  return prefix + (!!post.slug ? "/p/"+post.slug : "/posts/"+post._id);
 };
 Posts.helpers({getPageUrl: function (isAbsolute) {return Posts.getPageUrl(this, isAbsolute);}});

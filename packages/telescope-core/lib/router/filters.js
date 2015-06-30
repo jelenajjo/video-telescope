@@ -142,8 +142,10 @@ Router._filters = {
 
     if (!!title) {
       props.title = title + " | " + Settings.get("title");
+      props.title = props.title.substring(0, 55);
     }
     if (!!description) {
+      description = description.substring(0, 155);
       props.meta.description = description;
       props.og.description = description;
     }

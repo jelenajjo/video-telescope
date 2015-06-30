@@ -29,7 +29,7 @@ Template.nav.helpers({
 SSR.compileTemplate('postAuthor',Assets.getText('private/views/posts/modules/post-author.html'));
 Template.postAuthor.helpers({
   profileUrl:function(userId){
-    return Users.getProfileUrlBySlugOrId(userId);
+    return Users.getProfileUrl({_id: userId, telescope: {}});
   },
   displayName:function(userId){
     return Users.getDisplayNameById(userId);

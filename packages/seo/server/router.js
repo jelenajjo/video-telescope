@@ -6,8 +6,8 @@ function openGraphMetaProperties(post){
   var og = {
     type: 'video',
     url: Router.routes.post_page_by_slug.url(post),
-    title: post.title,
-    description: post.body,
+    title: post.title.substring(0, 55),
+    description: post.body.substring(0, 155),
     site_name: Settings.get('title'),
   };
 
