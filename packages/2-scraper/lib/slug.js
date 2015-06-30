@@ -61,3 +61,15 @@ Meteor.startup(function () {
     controller: PostSlugPageController
   });
 });
+
+Posts.getLink = function (post, isAbsolute) {
+  return this.getPageUrl(post, isAbsolute);
+};
+Posts.helpers({getLink: function (isAbsolute) {return Posts.getLink(this, isAbsolute);}});
+
+Posts.getPageUrl = function(post, isAbsolute){
+  isAbsolute = typeof isAbsolute === "undefined" ? false : isAbsolute; // default to false
+  var prefix = isAbsolute ? Telescope.utils.getSiteUrl().slice(0,-1) : "";
+  return prefix + !!post.slug ? "/p/"+post.slug : "/posts/"+post._id;
+};
+Posts.helpers({getPageUrl: function (isAbsolute) {return Posts.getPageUrl(this, isAbsolute);}});

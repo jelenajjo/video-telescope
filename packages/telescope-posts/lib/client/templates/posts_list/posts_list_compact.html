@@ -1,4 +1,4 @@
-<!-- 
+<!--
 
 Post List Compact Component
 
@@ -38,7 +38,7 @@ postsField (Object)
     </thead>
     {{#each postsCursor}}
       <tr>
-        <td><a href="{{pathFor route='post_page' _id=_id}}">{{title}}</a></td>
+        <td><a href="{{pathFor route='post_page_by_slug' slug=slug}}">{{title}}</a></td>
         <td>{{fieldValue}}</td>
       </tr>
     {{/each}}

@@ -9,7 +9,7 @@
     </thead>
     {{#each commentsCursor}}
       <tr>
-        <td><a href="{{pathFor route='post_page' _id=postId}}/">{{postTitle}}</a></td>
+        <td><a href="{{pathFor route='post_page_by_slug' slug=postSlug}}">{{postTitle}}</a></td>
         <td>{{{htmlBody}}}</td>
         <td>{{fieldValue}}</td>
       </tr>

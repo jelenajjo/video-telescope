@@ -14,6 +14,10 @@ Template.comments_list_compact.helpers({
     var post = Posts.findOne(this.postId);
     return !!post && post.title;
   },
+  postSlug: function () {
+    var post = Posts.findOne(this.postId);
+    return !!post && post.slug;
+  },
   fieldLabel: function () {
     return this.controllerOptions.fieldLabel;
   },
