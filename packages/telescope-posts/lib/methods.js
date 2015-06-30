@@ -95,7 +95,7 @@ Posts.edit = function (postId, modifier, post) {
 
   // ------------------------------ Callbacks ------------------------------ //
 
-  Telescope.callbacks.runAsync("postEditAsync", modifier, Posts.findOne(postId));
+  Telescope.callbacks.runAsync("postEditAsync", Posts.findOne(postId));
 
   // ------------------------------ After Update ------------------------------ //
   return Posts.findOne(postId);

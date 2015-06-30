@@ -2,6 +2,11 @@
   <div class="single-post grid">
     {{#if body}}
       <div class="row videoEmbed">
+        {{#if images}}
+          {{#each images}}
+            <img src="{{this}}" alt="" />
+          {{/each}}
+        {{/if}}
         {{> post_body}}
       </div>
       {{> postBottom}}

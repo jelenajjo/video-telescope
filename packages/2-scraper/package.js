@@ -34,6 +34,7 @@ Package.onUse(function (api) {
     'lib/cropper.js',
     'lib/comments.js',
     'lib/slug.js',
+    'lib/images.js',
   ], ['client', 'server']);
 
   // client
@@ -46,6 +47,10 @@ Package.onUse(function (api) {
     'client/scraper/autoform-postthumbnail.js',
     'client/scraper/autoform-postvideo.html',
     'client/scraper/autoform-postvideo.js',
+    'client/scraper/autoform-postvideo.js',
+
+    'client/images/autoform.html',
+    'client/images/autoform.js',
 
     'client/scraper/post_thumbnail.scss',
     'client/scraper/post_thumbnail.html',
@@ -63,7 +68,7 @@ Package.onUse(function (api) {
     'server/scraper/scraper.js',
     'server/scraper/scrapers/xvideos.js',
     'server/scraper/scrapers/xhamster.js',
-    'server/scraper/directives.js',
+    'server/directives.js',
 
     'server/cropper.js',
     'server/slug.js',

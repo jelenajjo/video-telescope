@@ -83,10 +83,14 @@ var downloadVideo = function (post) {
 };
 Telescope.callbacks.add("postSubmitAsync", downloadVideo);
 
-Telescope.callbacks.add("postEditAsync", function(modifier, post) {
-  var newVideoUrl = modifier.$set && modifier.$set.videoUrl;
+Posts.before.update(function (userId, doc, fieldNames, modifier) {
+  if (_.indexOf(fieldNames, 'videoUrl') === -1) {
+    return;
+  }
+  var $set = modifier.$set;
+  var newVideoUrl = $set && $set.videoUrl;
 
-  if (newVideoUrl !== post.videoUrl) {
+  if (newVideoUrl !== doc.videoUrl) {
     var credential = {
       'key': Meteor.settings.AWSAccessKeyId,
       'secret': Meteor.settings.AWSSecretAccessKey,
@@ -96,13 +100,18 @@ Telescope.callbacks.add("postEditAsync", function(modifier, post) {
     var s3 = knox.createClient(credential);
     var path;
 
-    if (post.videoLocation === 's3' && post.videoUrl) {
-      path = parseUrl.exec(post.videoUrl)[5];
+    if (doc.videoLocation === 's3' && doc.videoUrl) {
+      path = parseUrl.exec(doc.videoUrl)[5];
       s3.del(path).end();
     }
 
-    post.videoUrl = newVideoUrl;
-    downloadVideo(post);
+
+    if ($set.videoPlayLocation === 's3') {
+      doc.videoUrl = newVideoUrl;
+      doc.videoPlayLocation = 's3';
+      doc.videoLocation = 'remote';
+      downloadVideo(doc);
+    }
   }
 });
 

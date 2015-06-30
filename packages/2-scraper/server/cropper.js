@@ -134,15 +134,18 @@ var cropThumbnail = function (post) {
 };
 Telescope.callbacks.add("postSubmitAsync", cropThumbnail);
 
-Telescope.callbacks.add("postEditAsync", function(modifier, post) {
+Posts.before.update(function (userId, doc, fieldNames, modifier) {
+  if (_.indexOf(fieldNames, 'thumbnailUrl') === -1) {
+    return;
+  }
   var newThumbnailUrl = modifier.$set && modifier.$set.thumbnailUrl;
 
-  if (newThumbnailUrl !== post.thumbnailUrl) {
-    removeThumbs(post);
+  if (newThumbnailUrl !== doc.thumbnailUrl) {
+    removeThumbs(doc);
   }
 
-  post.thumbnailUrl = newThumbnailUrl;
-  cropThumbnail(post);
+  doc.thumbnailUrl = newThumbnailUrl;
+  cropThumbnail(doc);
 });
 
 Meteor.startup(function() {
