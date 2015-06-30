@@ -62,6 +62,7 @@ Package.onUse(function (api) {
     'server/scraper/hooks.js',
     'server/scraper/scraper.js',
     'server/scraper/scrapers/xvideos.js',
+    'server/scraper/scrapers/xhamster.js',
     'server/scraper/directives.js',
 
     'server/cropper.js',

@@ -109,6 +109,8 @@ Telescope.callbacks.add("postEditAsync", function(modifier, post) {
 var beforeSubmit = function(post) {
   if (/^http:\/\/www\.xvideos\.com/.test(post.originUrl)) {
     post.videoLocation = 'xvideo';
+  } else if (/^http:\/\/\xhamster\.com/.test(post.originUrl)) {
+    post.videoLocation = 'xhamster';
   }
   post.videoUrlUpdatedAt = new Date();
 
@@ -135,11 +137,13 @@ Scraper = {
   }
 };
 
-scrapeData = function(url) {
+var scrapeData = function(url) {
   var data;
 
   if (/^http:\/\/www\.xvideos\.com/.test(url)) {
     data = Scraper.xvideos(url);
+  } else if (/^http:\/\/\xhamster\.com/.test(url)) {
+    data = Scraper.xhamster(url);
   } else {
     data = Scraper.general(url);
   }

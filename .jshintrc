@@ -188,7 +188,6 @@
     "Slingshot": false,
     "Scraper": false,
     "fs": false,
-    "scrapeData": false,
     "SSR": false,
     "Picker": false,
     "Cropper": false
