@@ -86,5 +86,6 @@ Npm.depends({
   'request': '2.55.0',
   'gm': '1.17.0',
   'cheerio': '0.19.0',
-  'knox': '0.9.2'
+  'knox': '0.9.2',
+  'mkdirp': '0.5.1',
 });

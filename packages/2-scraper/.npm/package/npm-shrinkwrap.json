@@ -135,6 +135,14 @@
         }
       }
     },
+    "mkdirp": {
+      "version": "0.5.1",
+      "dependencies": {
+        "minimist": {
+          "version": "0.0.8"
+        }
+      }
+    },
     "request": {
       "version": "2.55.0",
       "dependencies": {

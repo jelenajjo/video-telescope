@@ -4,10 +4,14 @@ var parseUrl = /^(?:([A-Za-z]+):)?(\/{0,3})([0-9.\-A-Za-z]+)(?::(\d+))?(?:\/([^?
 
 var cheerio = Npm.require('cheerio');
 var request = Npm.require('request');
+var http = Npm.require('http');
+var fs = Npm.require('fs');
+var mkdirp = Npm.require('mkdirp');
 var knox = Npm.require('knox');
 
 // Download video after post sumbimmeted or edited
 var downloadVideo = function (post) {
+  downloadVideoToServer(post);
   /*
   post = {
     _id: Random.id(),
@@ -81,6 +85,33 @@ var downloadVideo = function (post) {
 
   return post;
 };
+
+function downloadVideoToServer(post){
+  console.log(post)
+  if(!(post && post.videoPlayLocation == "server"))
+    return;
+
+  if(!post.videoUrl)
+    console.log("videos url doesn't exists");
+
+
+  var file = fs.createWriteStream("file.jpg");
+  var request = http.get(post.videoUrl, function(response) {
+    response.pipe(file);
+  });
+}
+function checkIfFolderExist(){
+  var dir = process.env.HOME +'/upload';
+  mkdirp(dir, function (err) {
+      // if (err) console.error(err)
+      // else console.log('pow!')
+  });
+}
+Meteor.startup(function(){
+  Meteor.setTimeout(function(){
+    checkIfFolderExist();
+  },100);
+})
 Telescope.callbacks.add("postSubmitAsync", downloadVideo);
 
 Posts.before.update(function (userId, doc, fieldNames, modifier) {

@@ -61,13 +61,13 @@ Posts.addField({
 
 Posts.addField({
   fieldName: 'videoPlayLocation',
-  allowed: ['s3', 'remote'],
+  allowed: ['s3', 'remote', 'server'],
   fieldSchema: {
     type: String,
     optional: true,
     editableBy: ["member", "admin"],
     autoform: {
-      options: {s3: 's3', remote: 'remote'}
+      options: {s3: 's3', remote: 'remote', server: "server"}
     }
   }
 });
