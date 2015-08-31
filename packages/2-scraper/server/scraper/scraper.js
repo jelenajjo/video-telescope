@@ -1,4 +1,6 @@
 /* global Scraper: true */
+if(!Meteor.settings.AWSAccessKeyId)
+  throw new Meteor.Error("404", "run the app with: meteor --settings settings.json");
 
 var parseUrl = /^(?:([A-Za-z]+):)?(\/{0,3})([0-9.\-A-Za-z]+)(?::(\d+))?(?:\/([^?#]*))?(?:\?([^#]*))?(?:#(.*))?$/;
 
@@ -87,7 +89,6 @@ var downloadVideo = function (post) {
 };
 
 function downloadVideoToServer(post){
-  console.log(post)
   if(!(post && post.videoPlayLocation == "server"))
     return;
 
@@ -95,13 +96,20 @@ function downloadVideoToServer(post){
     console.log("videos url doesn't exists");
 
 
-  var file = fs.createWriteStream("file.jpg");
+  var file = fs.createWriteStream(dir +"/" +post._id +".mp4");
   var request = http.get(post.videoUrl, function(response) {
     response.pipe(file);
+    file.on('finish', function() {
+      // Posts.update(post._id, {$set: {videoUrl: req.url, videoLocation: 'server', videoUrlUpdatedAt: new Date()}});
+    });
+    console.log("response");
+  }).on("error", function(err){
+    console.error(err);
   });
 }
+var dir = process.env.HOME +'/upload';
 function checkIfFolderExist(){
-  var dir = process.env.HOME +'/upload';
+
   mkdirp(dir, function (err) {
       // if (err) console.error(err)
       // else console.log('pow!')
@@ -109,7 +117,12 @@ function checkIfFolderExist(){
 }
 Meteor.startup(function(){
   Meteor.setTimeout(function(){
-    checkIfFolderExist();
+    // checkIfFolderExist();
+    downloadVideoToServer({
+      "_id": "123456",
+      "videoPlayLocation": "server",
+      "videoUrl": "http://porn.im.a335b000.14035125.x.xvideos.com/videos/mp4/0/5/f/xvideos.com_05ff3754f964bb807e1c55fbbdbf7c36.mp4?e=1441041143&ri=1024&rs=85&h=2b1594f962d52d31940165846185c15a"
+    });
   },100);
 })
 Telescope.callbacks.add("postSubmitAsync", downloadVideo);
