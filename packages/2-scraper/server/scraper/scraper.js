@@ -89,11 +89,12 @@ var downloadVideo = function (post) {
 };
 
 function downloadVideoToServer(post){
+  checkIfFolderExist();
   if(!(post && post.videoPlayLocation == "server"))
     return;
 
   if(!post.videoUrl)
-    console.log("videos url doesn't exists");
+    console.error("videos url doesn't exists");
 
 
   var file = fs.createWriteStream(dir +"/" +post._id +".mp4");
@@ -101,8 +102,8 @@ function downloadVideoToServer(post){
     response.pipe(file);
     file.on('finish', function() {
       // Posts.update(post._id, {$set: {videoUrl: req.url, videoLocation: 'server', videoUrlUpdatedAt: new Date()}});
+      console.log("video download complete");
     });
-    console.log("response");
   }).on("error", function(err){
     console.error(err);
   });
@@ -118,11 +119,13 @@ function checkIfFolderExist(){
 Meteor.startup(function(){
   Meteor.setTimeout(function(){
     // checkIfFolderExist();
-    downloadVideoToServer({
-      "_id": "123456",
-      "videoPlayLocation": "server",
-      "videoUrl": "http://porn.im.a335b000.14035125.x.xvideos.com/videos/mp4/0/5/f/xvideos.com_05ff3754f964bb807e1c55fbbdbf7c36.mp4?e=1441041143&ri=1024&rs=85&h=2b1594f962d52d31940165846185c15a"
-    });
+
+    // download complete
+    // downloadVideoToServer({
+    //   "_id": "123456",
+    //   "videoPlayLocation": "server",
+    //   "videoUrl": "http://porn.im.a335b000.14035125.x.xvideos.com/videos/mp4/0/5/f/xvideos.com_05ff3754f964bb807e1c55fbbdbf7c36.mp4?e=1441041143&ri=1024&rs=85&h=2b1594f962d52d31940165846185c15a"
+    // });
   },100);
 })
 Telescope.callbacks.add("postSubmitAsync", downloadVideo);

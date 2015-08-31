@@ -22,24 +22,24 @@ var cropImage = function(imageUrl, size, cb) {
 
     var req = HTTP.get(imageUrl, {responseType: 'buffer'}).content;
 
-    gm(req, 'img')
-      .resize(size.w, size.h, '^')
-      .noProfile()
-      .gravity('Center')
-      .crop(size.w, size.h)
-      .identify(function(err, val) {
-        var format = null;
-        if (val && val.format) {
-          format = val.format.toLowerCase();
-        }
-        this.write('/tmp/thumbnail', function(err) {
-          if (err) {
-            throw err;
-          } else if (cb) {
-            cb(null, {path: '/tmp/thumbnail', format: format});
-          }
-        });
-      });
+    // gm(req, 'img')
+    //   .resize(size.w, size.h, '^')
+    //   .noProfile()
+    //   .gravity('Center')
+    //   .crop(size.w, size.h)
+    //   .identify(function(err, val) {
+    //     var format = null;
+    //     if (val && val.format) {
+    //       format = val.format.toLowerCase();
+    //     }
+    //     this.write('/tmp/thumbnail', function(err) {
+    //       if (err) {
+    //         throw err;
+    //       } else if (cb) {
+    //         cb(null, {path: '/tmp/thumbnail', format: format});
+    //       }
+    //     });
+    //   });
   } catch (e) {
     cb(e);
   }
